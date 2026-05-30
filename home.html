@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VastraHub - India's Heritage Fashion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+:root{--surface:#0a0a0a;--surface-2:#111;--surface-3:#1a1a1a;--on-surface:#f5f0e8;--on-surface-2:#b8a890;--primary:#c9a227;--border:rgba(255,255,255,0.06);--border-2:rgba(255,255,255,0.12);--radius:14px;--radius-lg:22px;--radius-xl:32px;--transition:600ms cubic-bezier(0.4,0,0.2,1);--transition-fast:200ms ease}
+html.light-theme{--surface:#ffffff;--surface-2:#f8f8f8;--surface-3:#f0f0f0;--on-surface:#1a1a1a;--on-surface-2:#5a5a5a;--on-surface-3:#999999;--border:rgba(0,0,0,0.08);--border-2:rgba(0,0,0,0.15)}
+html,body{background:var(--surface);color:var(--on-surface);font-family:'Inter',sans-serif;overflow-x:hidden;scroll-behavior:smooth}
+body.no-scroll{overflow:hidden}
+img{display:block;max-width:100%}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+a{text-decoration:none;color:inherit}
+.grain{pointer-events:none;position:fixed;inset:-50%;width:200%;height:200%;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E") repeat;opacity:0.03;z-index:9999}
+.topnav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:transparent;transition:background var(--transition-fast),backdrop-filter var(--transition-fast)}
+.topnav.solid{background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:24px;letter-spacing:1px;color:#fff;cursor:pointer;font-weight:600}
+.nav-logo span{color:var(--primary);font-style:italic}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.5);transition:color var(--transition-fast);cursor:pointer;letter-spacing:0.5px;font-weight:500;text-transform:uppercase}
+.nav-links a.active,.nav-links a:hover{color:var(--primary)}
+.nav-right{display:flex;gap:12px;align-items:center}
+.nav-icon{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition-fast);color:#fff;font-size:15px}
+.nav-icon:hover{background:rgba(201,162,39,0.15);border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+/* PROFILE MENU STYLES */
+.profile-wrapper{position:relative}
+.profile-icon{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;font-weight:700;font-size:16px;color:#000;border:1px solid rgba(255,255,255,0.1);overflow:hidden}
+.profile-icon:hover{transform:scale(1.1);box-shadow:0 8px 20px rgba(201,162,39,0.4);border-color:var(--primary)}
+.profile-menu{position:absolute;top:54px;right:0;width:280px;background:var(--surface-3);border:1px solid var(--border-2);border-radius:var(--radius-lg);backdrop-filter:blur(20px);opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s;z-index:1000;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.profile-menu.show{opacity:1;visibility:visible;transform:translateY(0)}
+.profile-header{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.profile-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg, #c9a227 0%, #d4af37 100%);display:flex;align-items:center;justify-content:center;font-weight:600;color:#000;font-size:18px;position:relative;overflow:hidden;cursor:pointer}
+.profile-avatar img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.profile-avatar-upload{position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;cursor:pointer}
+.profile-avatar:hover .profile-avatar-upload{opacity:1}
+.profile-avatar-upload i{color:#fff;font-size:18px}
+.profile-info{flex:1}
+.profile-name{font-size:14px;font-weight:600;color:var(--on-surface);margin-bottom:4px}
+.profile-email{font-size:12px;color:var(--on-surface-2)}
+.profile-menu-item{padding:14px 16px;font-size:13px;color:var(--on-surface-2);cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:12px;border-left:3px solid transparent}
+.profile-menu-item:hover{background:rgba(201,162,39,0.1);color:var(--primary);border-left-color:var(--primary);padding-left:18px}
+.profile-menu-item i{width:16px;text-align:center}
+.profile-divider{height:1px;background:var(--border);margin:6px 0}
+/* ===== FEATURED STATES SHOWCASE ===== */
+.featured-states-section{padding:100px 48px;background:linear-gradient(135deg,var(--surface-2) 0%,var(--surface) 100%)}
+.featured-states-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1400px;margin:0 auto;margin-bottom:40px}
+.featured-state-card{position:relative;height:380px;border-radius:var(--radius-xl);overflow:hidden;cursor:pointer;transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+.featured-state-card.featured-large{grid-column:span 1;height:450px}
+.featured-state-card:nth-child(1){grid-row:span 2}
+.featured-state-card:nth-child(4){grid-column:span 1;grid-row:span 2;height:auto}
+.fsc-image{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.8s cubic-bezier(0.4,0,0.2,1)}
+.featured-state-card:hover .fsc-image{transform:scale(1.08)}
+.fsc-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.7) 100%);transition:opacity 0.6s}
+.featured-state-card:hover .fsc-overlay{opacity:0.9}
+.fsc-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;z-index:2;transform:translateY(20px);opacity:0;transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+.featured-state-card:hover .fsc-content{transform:translateY(0);opacity:1}
+.fsc-badge{display:inline-block;background:rgba(201,162,39,0.9);color:#000;padding:6px 14px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:12px;width:fit-content}
+.fsc-title{font-family:'Playfair Display',serif;font-size:28px;color:#fff;font-weight:600;line-height:1.2;margin-bottom:6px}
+.fsc-state{font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.fsc-desc{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;margin-bottom:16px}
+.fsc-hover-btn{background:var(--primary);color:#000;padding:10px 20px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:8px;width:fit-content;transform:translateX(-10px);opacity:0;transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+.featured-state-card:hover .fsc-hover-btn{transform:translateX(0);opacity:1}
+.view-all-states-btn{background:linear-gradient(135deg,var(--primary),#d4af37);color:#000;padding:16px 40px;border-radius:var(--radius-lg);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;display:inline-flex;align-items:center;gap:12px;border:none;box-shadow:0 4px 20px rgba(201,162,39,0.4),0 0 0 3px rgba(201,162,39,0.15)}
+.view-all-states-btn:hover{background:linear-gradient(135deg,#d4af37,var(--primary));transform:translateY(-3px);box-shadow:0 8px 32px rgba(201,162,39,0.5),0 0 0 4px rgba(201,162,39,0.2)}
+.view-all-states-btn:hover{background:transparent;color:var(--primary);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,162,39,0.3)}
+@media(max-width:1200px){.featured-states-grid{grid-template-columns:repeat(2,1fr)}.featured-state-card:nth-child(1){grid-row:span 1}.featured-state-card:nth-child(4){grid-row:span 1}}
+@media(max-width:768px){.featured-states-grid{grid-template-columns:1fr}.featured-state-card{height:320px}.featured-state-card.featured-large{height:320px}.fsc-title{font-size:22px}.featured-states-section{padding:60px 24px}}
+html.light-theme .featured-states-section{background:linear-gradient(135deg,#f0f0f0 0%,#ffffff 100%)}
+html.light-theme .fsc-title{color:#1a1a1a}
+html.light-theme .fsc-badge{background:#c9a227;color:#fff}
+.cart-wrap{position:relative}
+.cart-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--primary);color:#000;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+html.light-theme .nav-logo{color:#1a1a1a!important}
+html.light-theme .nav-logo span{color:var(--primary)!important}
+html.light-theme .nav-links a{color:rgba(0,0,0,0.6)!important}
+html.light-theme .nav-links a.active,html.light-theme .nav-links a:hover{color:var(--primary)!important}
+html.light-theme .nav-icon{color:#1a1a1a!important;border-color:rgba(0,0,0,0.15)!important;background:rgba(0,0,0,0.05)!important}
+html.light-theme .nav-icon:hover{color:var(--primary)!important;border-color:var(--primary)!important;background:rgba(201,162,39,0.12)!important}
+html.light-theme .topnav.solid{background:rgba(255,255,255,0.95)!important;border-bottom-color:rgba(0,0,0,0.08)!important}
+html.light-theme #hero{transition:background 0.8s cubic-bezier(0.4,0,0.2,1)!important}
+html.light-theme .hero-title{color:#1a1a1a!important}
+html.light-theme .hero-tag{color:var(--primary)!important}
+html.light-theme .discover-btn{color:#1a1a1a!important}
+html.light-theme .h-dot{background:rgba(0,0,0,0.25)!important}
+html.light-theme .hero-left{color:#1a1a1a!important}
+#hero{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ghost-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none;z-index:1}
+.ghost-text{font-family:'Playfair Display',serif;font-size:clamp(70px,16vw,200px);-webkit-text-stroke:1px rgba(201,162,39,0.08);color:transparent;white-space:nowrap;text-transform:uppercase;letter-spacing:8px;transition:opacity var(--transition);user-select:none;font-weight:400}
+.carousel-stage{position:relative;width:100%;max-width:1200px;height:100vh;display:flex;align-items:center;justify-content:center;z-index:10;padding:0 24px}
+.c-item{position:absolute;width:100%;max-width:380px;transition:all var(--transition);display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.c-item img{width:100%;height:520px;object-fit:cover;object-position:center top;border-radius:var(--radius-lg);filter:drop-shadow(0 32px 64px rgba(0,0,0,0.8));pointer-events:none}
+.c-item .item-badge{position:absolute;top:16px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.15);border-radius:30px;padding:6px 18px;font-size:11px;color:rgba(255,255,255,0.85);letter-spacing:2px;white-space:nowrap;opacity:0;transition:opacity 0.4s;pointer-events:none;font-weight:500}
+.c-item.pos-center .item-badge{opacity:1}
+.pos-center{transform:translateX(0) scale(1.08);z-index:30;opacity:1;filter:blur(0)}
+.pos-left{transform:translateX(-46%) scale(0.8);z-index:20;opacity:0.4;filter:blur(4px)}
+.pos-right{transform:translateX(46%) scale(0.8);z-index:20;opacity:0.4;filter:blur(4px)}
+.pos-back{transform:translateX(0) scale(0.5);z-index:10;opacity:0;filter:blur(12px)}
+.hero-dots{position:absolute;bottom:140px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:40}
+.h-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:all 0.4s}
+.h-dot.on{width:24px;border-radius:3px;background:var(--primary)}
+.hero-bottom{position:absolute;bottom:0;left:0;right:0;padding:32px 48px;z-index:40;display:flex;justify-content:space-between;align-items:flex-end}
+.hero-left{display:flex;flex-direction:column;gap:16px}
+.hero-tag{font-size:11px;letter-spacing:4px;color:var(--primary);text-transform:uppercase;font-weight:600}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,64px);color:#fff;line-height:1.05;letter-spacing:1px;font-weight:600}
+.hero-nav{display:flex;gap:12px}
+.h-nav-btn{width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;transition:all var(--transition-fast);background:rgba(255,255,255,0.05)}
+html.light-theme .h-nav-btn{border-color:rgba(0,0,0,0.2)!important;background:rgba(0,0,0,0.05)!important;color:#1a1a1a!important}
+html.light-theme .h-nav-btn:hover{background:rgba(201,162,39,0.15)!important;border-color:var(--primary)!important;color:var(--primary)!important}
+html.light-theme .c-item .item-badge{background:rgba(0,0,0,0.08)!important;border-color:rgba(0,0,0,0.2)!important;color:#1a1a1a!important}
+html.light-theme .sec-title{color:#1a1a1a!important}
+html.light-theme .sec-desc{color:var(--on-surface-2)!important}
+html.light-theme .series-pill{background:rgba(0,0,0,0.05)!important;border-color:rgba(0,0,0,0.1)!important;color:rgba(0,0,0,0.6)!important}
+.h-nav-btn:hover{transform:scale(1.1);background:rgba(201,162,39,0.2);border-color:var(--primary);color:var(--primary)}
+.h-nav-btn:active{transform:scale(0.95)}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.discover-btn{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,56px);color:#fff;display:flex;align-items:center;gap:10px;transition:opacity var(--transition-fast);cursor:pointer;font-weight:500}
+.discover-btn:hover{opacity:0.7}
+.discover-btn .arr{display:inline-block;transition:transform var(--transition-fast)}
+.discover-btn:hover .arr{transform:translate(7px,-7px)}
+.series-pill{background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);padding:8px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);font-size:12px;color:rgba(255,255,255,0.6);letter-spacing:1px}
+.sec-title-wrap{padding:80px 48px 40px;text-align:center}
+.sec-eyebrow{font-size:11px;letter-spacing:4px;color:var(--primary);text-transform:uppercase;margin-bottom:12px;font-weight:600}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,56px);color:#fff;letter-spacing:1px;font-weight:600;line-height:1.1}
+.sec-title span{color:var(--primary);font-style:italic}
+.sec-desc{max-width:600px;margin:16px auto 0;font-size:15px;color:var(--on-surface-2);line-height:1.7}
+.states-container{padding:0}
+.state-block{display:grid;grid-template-columns:1fr 1fr;min-height:85vh;position:relative;overflow:hidden}
+.state-block.reverse{direction:rtl}
+.state-block.reverse>*{direction:ltr}
+.sb-img-side{position:relative;overflow:hidden}
+.sb-img{width:100%;height:100%;min-height:600px;object-fit:cover;object-position:center top;display:block;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,.46,.45,.94)}
+.state-block:hover .sb-img{transform:scale(1.09)}
+.sb-img-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,.05) 100%)}
+.sb-num{position:absolute;top:2rem;left:2.5rem;font-family:'Playfair Display',serif;font-size:8rem;font-weight:700;-webkit-text-stroke:1px rgba(201,162,39,.15);color:transparent;line-height:1;pointer-events:none}
+.state-block.reverse .sb-num{left:auto;right:2.5rem}
+.sb-tag{position:absolute;bottom:2.5rem;left:2.5rem;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);backdrop-filter:blur(8px);color:#e8c56e;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;padding:.5rem 1.2rem;font-weight:600}
+.state-block.reverse .sb-tag{left:auto;right:2.5rem}
+.sb-text-side{display:flex;align-items:center;justify-content:center;padding:4rem 5rem;background:var(--surface);position:relative}
+.sb-inner{max-width:480px}
+.sb-num-label{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,162,39,.5);margin-bottom:1.2rem;display:block;font-weight:600}
+.sb-state-name{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,3.5vw,4.5rem);color:#fff;line-height:1.05;margin-bottom:.4rem;letter-spacing:1px;font-weight:600}
+.sb-state-name span{color:var(--primary);font-style:italic}
+.sb-region{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,162,39,.6);margin-bottom:2rem;font-weight:500}
+.sb-line{width:50px;height:2px;background:linear-gradient(to right,var(--primary),transparent);margin-bottom:2rem}
+.sb-desc{font-size:.95rem;color:var(--on-surface-2);line-height:1.9;margin-bottom:2.5rem}
+.sb-feats{display:flex;flex-direction:column;gap:.85rem;margin-bottom:2.8rem}
+.sb-feat{display:flex;align-items:flex-start;gap:.9rem;font-size:.82rem;color:rgba(184,168,144,.85);line-height:1.5}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:.45rem}
+.sb-price-row{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem}
+.sb-price{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff;font-weight:600}
+.sb-price-label{font-size:.7rem;letter-spacing:.12em;color:rgba(201,162,39,.7);text-transform:uppercase;font-weight:500}
+.sb-cta{display:inline-flex;align-items:center;gap:.8rem;border:1px solid rgba(201,162,39,.35);color:var(--primary);padding:.9rem 2rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .35s;font-family:'Inter',sans-serif;font-weight:600;background:transparent}
+.sb-cta:hover{background:rgba(201,162,39,.12);border-color:var(--primary);gap:1.3rem}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;padding:32px 48px 64px}
+.product-card{background:var(--surface-2);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:transform var(--transition-fast),border-color var(--transition-fast),box-shadow var(--transition-fast)}
+.product-card:hover{transform:translateY(-6px);border-color:var(--border-2);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.card-img-wrap{position:relative;height:320px;overflow:hidden;background:var(--surface-3)}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.6s ease}
+.product-card:hover .card-img-wrap img{transform:scale(1.08)}
+.card-badge{position:absolute;top:12px;left:12px;background:var(--primary);color:#000;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:8px;text-transform:uppercase}
+.card-quick{position:absolute;bottom:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.95);color:#000;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all var(--transition-fast);opacity:0;transform:scale(0.8)}
+.product-card:hover .card-quick{opacity:1;transform:scale(1)}
+.card-body{padding:18px 18px 20px}
+.card-state-tag{font-size:11px;letter-spacing:1.5px;color:var(--primary);text-transform:uppercase;margin-bottom:6px;font-weight:600}
+.card-name{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px;line-height:1.4}
+.card-type{font-size:12px;color:var(--on-surface-2);margin-bottom:12px}
+.card-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:600}
+.card-old{font-size:13px;color:var(--on-surface-3);text-decoration:line-through;margin-left:8px}
+.card-stars{color:var(--primary);font-size:11px;margin-bottom:8px;letter-spacing:2px}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.card-wish{font-size:18px;color:rgba(255,255,255,0.25);transition:color var(--transition-fast);background:none;border:none;cursor:pointer}
+html.light-theme .card-name{color:#1a1a1a!important}
+html.light-theme .card-price{color:#1a1a1a!important}
+html.light-theme .card-product{color:#1a1a1a!important}
+html.light-theme .shop-search-box input{color:#1a1a1a!important}
+html.light-theme .shop-search-box input::placeholder{color:rgba(0,0,0,0.3)!important}
+html.light-theme .shop-search-box i{color:rgba(0,0,0,0.4)!important}
+html.light-theme .cat-tab{color:rgba(0,0,0,0.4)!important}
+html.light-theme .cat-tab:hover{color:rgba(0,0,0,0.6)!important}
+html.light-theme .sb-state-name{color:#1a1a1a!important}
+html.light-theme .sb-price{color:#1a1a1a!important}
+html.light-theme .sb-desc{color:var(--on-surface-2)!important}
+html.light-theme .vp-title{color:#1a1a1a!important}
+html.light-theme .vp-pname{color:#1a1a1a!important}
+html.light-theme .vp-close{color:rgba(0,0,0,0.5)!important}
+html.light-theme .vp-close:hover{background:rgba(0,0,0,0.08)!important;color:#1a1a1a!important}
+.card-wish:hover,.card-wish.active{color:#e74c3c}
+.shop-search-wrap{padding:0 48px 32px}
+.shop-search-box{display:flex;align-items:center;gap:12px;background:var(--surface-3);border:1px solid var(--border-2);border-radius:50px;padding:14px 24px;max-width:520px;margin:0 auto}
+.shop-search-box i{color:rgba(255,255,255,0.3);font-size:14px}
+.shop-search-box input{flex:1;background:none;border:none;outline:none;font-size:14px;color:#fff;font-family:'Inter',sans-serif}
+.shop-search-box input::placeholder{color:rgba(255,255,255,0.25)}
+.cat-tabs-wrap{padding:0 48px 32px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--border);justify-content:center}
+.cat-tabs-wrap::-webkit-scrollbar{display:none}
+.cat-tab{flex-shrink:0;padding:14px 28px;font-size:13px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;position:relative;transition:color var(--transition-fast);cursor:pointer;white-space:nowrap;font-weight:500;text-transform:uppercase}
+.cat-tab:hover{color:rgba(255,255,255,0.6)}
+.cat-tab.active{color:var(--primary)}
+.cat-tab.active::after{content:'';position:absolute;bottom:0;left:25%;right:25%;height:2px;background:var(--primary);border-radius:2px 2px 0 0}
+.viewer-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.viewer-overlay.open{opacity:1;pointer-events:all}
+.viewer-panel{background:var(--surface-2);border-radius:var(--radius-xl);width:1000px;max-width:95vw;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;transform:translateY(30px) scale(0.97);transition:transform 0.4s cubic-bezier(0.34,1.4,0.64,1);border:1px solid var(--border-2)}
+.viewer-overlay.open .viewer-panel{transform:translateY(0) scale(1)}
+.vp-header{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;border-bottom:1px solid var(--border);flex-shrink:0}
+.vp-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff}
+.vp-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-2);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all var(--transition-fast);cursor:pointer;background:none}
+.vp-close:hover{color:#fff;background:rgba(255,255,255,0.08);transform:rotate(90deg)}
+.vp-body{display:flex;flex:1;overflow:auto}
+.vp-stage{flex:1;min-width:0;background:var(--surface-3);position:relative;display:flex;align-items:center;justify-content:center;min-height:500px;overflow:hidden}
+.vp-img{max-width:100%;max-height:100%;object-fit:contain;transition:transform 0.5s ease;cursor:zoom-in}
+.vp-img.zoomed{cursor:zoom-out}
+.vp-fabric-tags{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:8px}
+.vp-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);padding:6px 14px;border-radius:20px;font-size:11px;color:#111;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-weight:600}
+.vp-zoom-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:1px;background:rgba(0,0,0,0.5);padding:6px 18px;border-radius:20px;white-space:nowrap;pointer-events:none}
+.view-angles{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;background:rgba(0,0,0,0.4);padding:12px 8px;border-radius:16px;backdrop-filter:blur(8px)}
+.angle-btn{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all var(--transition-fast);cursor:pointer}
+html.light-theme .vp-stage{background:var(--surface-3)!important}
+html.light-theme .angle-btn{background:rgba(0,0,0,0.08)!important;border-color:rgba(0,0,0,0.15)!important;color:#1a1a1a!important}
+html.light-theme .vp-zoom-hint{color:rgba(0,0,0,0.6)!important;background:rgba(255,255,255,0.5)!important}
+.angle-btn:hover,.angle-btn.active{background:rgba(201,162,39,0.25);border-color:var(--primary);color:var(--primary)}
+.vp-detail{width:320px;flex-shrink:0;padding:32px 28px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:20px;overflow-y:auto}
+.vp-pname{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:600;line-height:1.2}
+.vp-brand{font-size:10px;letter-spacing:2.5px;color:var(--primary);text-transform:uppercase;margin-top:4px;font-weight:600}
+.vp-stars-row{display:flex;align-items:center;gap:6px}
+.vp-stars{color:var(--primary);font-size:13px;letter-spacing:2px}
+.vp-reviews{font-size:12px;color:var(--on-surface-2)}
+.vp-desc{font-size:13px;color:var(--on-surface-2);line-height:1.8}
+.vp-section-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#fff;margin-bottom:10px;text-transform:uppercase}
+html.light-theme .vp-section-label{color:#1a1a1a!important}
+html.light-theme .vp-size{color:rgba(0,0,0,0.5)!important;border-color:var(--border-2)!important}
+.vp-colors{display:flex;gap:10px;flex-wrap:wrap}
+.vp-swatch{width:32px;height:32px;border-radius:50%;cursor:pointer;border:3px solid transparent;outline:2px solid transparent;outline-offset:2px;transition:all var(--transition-fast)}
+.vp-swatch:hover{transform:scale(1.15)}
+.vp-swatch.active{outline-color:var(--primary)}
+.vp-sizes{display:flex;gap:8px;flex-wrap:wrap}
+.vp-size{padding:8px 16px;border:1px solid var(--border-2);border-radius:10px;font-size:12px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all var(--transition-fast);font-weight:500}
+.vp-size:hover,.vp-size.active{background:var(--primary);color:#000;border-color:var(--primary);font-weight:600}
+.vp-price-row{display:flex;align-items:baseline;gap:12px}
+.vp-price{font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;font-weight:600}
+.vp-old-price{font-size:15px;color:var(--on-surface-3);text-decoration:line-through}
+.vp-tax{font-size:11px;color:var(--on-surface-3);margin-top:4px}
+.vp-btns{display:flex;flex-direction:column;gap:12px;margin-top:auto}
+.btn-add{padding:16px;background:var(--primary);color:#000;border-radius:14px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all var(--transition-fast);border:none;cursor:pointer}
+.btn-add:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,0.3)}
+.btn-add:active{transform:scale(0.98)}
+.btn-wish-vp{padding:13px;border:1px solid var(--border-2);border-radius:14px;color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:1px;transition:all var(--transition-fast);background:none;cursor:pointer;font-weight:500}
+.btn-wish-vp:hover{background:rgba(255,255,255,0.06);color:#fff;border-color:rgba(255,255,255,0.3)}
+.btn-wish-vp.wished{color:#e74c3c;border-color:#e74c3c;background:rgba(231,76,60,0.08)}
+.cart-overlay-bg{position:fixed;inset:0;z-index:890;background:rgba(0,0,0,0.7);opacity:0;pointer-events:none;transition:opacity 0.4s}
+.cart-overlay-bg.open{opacity:1;pointer-events:all}
+.cart-sidebar{position:fixed;top:0;right:-460px;bottom:0;z-index:900;width:440px;background:var(--surface-2);border-left:1px solid var(--border-2);transition:right 0.4s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}
+.cart-sidebar.open{right:0}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;border-bottom:1px solid var(--border)}
+.cart-head-title{font-family:'Playfair Display',serif;font-size:24px;color:#fff;font-weight:600}
+.cart-head-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-2);color:rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all var(--transition-fast);cursor:pointer;background:none}
+.cart-head-close:hover{color:#fff;background:rgba(255,255,255,0.06);transform:rotate(90deg)}
+html.light-theme .cart-head-title{color:#1a1a1a!important}
+html.light-theme .cart-head-close{color:rgba(0,0,0,0.4)!important}
+html.light-theme .ci-name{color:#1a1a1a!important}
+html.light-theme .ci-price{color:#1a1a1a!important}
+html.light-theme .qty-b{color:rgba(0,0,0,0.5)!important}
+html.light-theme .qty-b:hover{background:rgba(0,0,0,0.08)!important;color:#1a1a1a!important}
+html.light-theme .cart-total-label{color:#1a1a1a!important}
+html.light-theme .cart-total-amount{color:#1a1a1a!important}
+.cart-items{flex:1;overflow-y:auto;padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+.cart-item{display:flex;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.ci-img{width:90px;height:110px;border-radius:12px;object-fit:cover;object-position:top;flex-shrink:0;background:var(--surface-3)}
+.ci-info{flex:1}
+.ci-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px;line-height:1.3}
+.ci-sub{font-size:12px;color:var(--on-surface-2);margin-bottom:12px}
+.ci-bottom{display:flex;align-items:center;justify-content:space-between}
+.ci-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:600}
+.ci-qty{display:flex;align-items:center;border:1px solid var(--border-2);border-radius:10px;overflow:hidden}
+.qty-b{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.5);transition:all var(--transition-fast);background:none;border:none;cursor:pointer}
+.qty-b:hover{background:rgba(255,255,255,0.08);color:#fff}
+.qty-n{width:36px;height:32px;line-height:32px;text-align:center;font-size:13px;border-left:1px solid var(--border-2);border-right:1px solid var(--border-2)}
+.ci-remove{color:rgba(255,255,255,0.2);font-size:18px;transition:color var(--transition-fast);align-self:flex-start;cursor:pointer;background:none;border:none}
+.ci-remove:hover{color:#e74c3c}
+.cart-footer{padding:24px 28px;border-top:1px solid var(--border)}
+.cart-sub-row{display:flex;justify-content:space-between;font-size:14px;color:var(--on-surface-2);margin-bottom:12px}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid var(--border);margin-bottom:20px}
+.cart-total-label{font-size:15px;font-weight:600;color:#fff}
+.cart-total-amount{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:600}
+.btn-checkout{width:100%;padding:16px;background:#fff;color:#000;border-radius:14px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;transition:all var(--transition-fast);border:none;cursor:pointer}
+.btn-checkout:hover{background:var(--primary);transform:translateY(-2px)}
+.wishlist-grid{padding:32px 48px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.wishlist-empty{text-align:center;padding:5rem 2rem;color:var(--on-surface-3);grid-column:1/-1}
+.wishlist-empty i{font-size:3rem;color:var(--primary);margin-bottom:1rem;opacity:0.5}
+.wishlist-empty h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:0.5rem}
+.admin-form{max-width:700px;margin:0 auto;padding:32px 48px 64px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:12px;letter-spacing:1.5px;color:var(--on-surface-2);text-transform:uppercase;font-weight:600}
+.form-input,.form-select,.form-textarea{width:100%;padding:14px 18px;background:var(--surface-3);border:1px solid var(--border-2);border-radius:12px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;transition:all var(--transition-fast)}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--primary);background:#242424}
+.form-input::placeholder{color:rgba(255,255,255,0.2)}
+.form-textarea{min-height:120px;resize:vertical}
+.form-select{cursor:pointer}
+html.light-theme .form-input,html.light-theme .form-select,html.light-theme .form-textarea{background:var(--surface-3)!important;border-color:var(--border-2)!important;color:#1a1a1a!important}
+html.light-theme .form-label{color:var(--on-surface-2)!important}
+html.light-theme .pay-title{color:#1a1a1a!important}
+html.light-theme .pay-item{color:var(--on-surface-2)!important}
+html.light-theme .pay-item.total span:last-child{color:#1a1a1a!important}
+html.light-theme .pay-method{background:var(--surface-3)!important;border-color:var(--border)!important;color:rgba(0,0,0,0.5)!important}
+html.light-theme .track-input{background:var(--surface-3)!important;border-color:var(--border-2)!important;color:#1a1a1a!important}
+html.light-theme .track-step-info h4{color:#1a1a1a!important}
+.btn-primary{padding:16px 32px;background:var(--primary);color:#000;border-radius:14px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--transition-fast)}
+.btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,0.25)}
+.payment-container{max-width:900px;margin:0 auto;padding:32px 48px 64px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.payment-form{display:flex;flex-direction:column;gap:20px}
+.payment-summary{background:var(--surface-2);border-radius:var(--radius-xl);padding:28px;border:1px solid var(--border)}
+.pay-title{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:20px;font-weight:600}
+.pay-item{display:flex;justify-content:space-between;padding:10px 0;font-size:14px;color:var(--on-surface-2);border-bottom:1px solid var(--border)}
+.pay-item.total{border-top:2px solid var(--border);border-bottom:none;padding-top:16px;margin-top:8px}
+.pay-item.total span:last-child{color:#fff;font-weight:700;font-size:18px}
+.payment-methods{display:flex;gap:12px;margin-bottom:20px}
+.pay-method{flex:1;padding:16px;background:var(--surface-3);border:2px solid var(--border);border-radius:14px;text-align:center;cursor:pointer;transition:all var(--transition-fast);color:rgba(255,255,255,0.5)}
+.pay-method:hover{border-color:var(--border-2);color:rgba(255,255,255,0.7)}
+.pay-method.active{border-color:var(--primary);background:rgba(201,162,39,0.08);color:var(--primary)}
+.pay-method i{font-size:24px;margin-bottom:8px;display:block}
+.pay-method span{font-size:12px;font-weight:600;letter-spacing:0.5px}
+.tracking-container{max-width:700px;margin:0 auto;padding:32px 48px 64px;text-align:center}
+.track-box{background:var(--surface-2);border-radius:var(--radius-xl);padding:40px;border:1px solid var(--border);margin-bottom:32px}
+.track-input-wrap{display:flex;gap:12px;margin-top:20px}
+.track-input{flex:1;padding:16px 20px;background:var(--surface-3);border:1px solid var(--border-2);border-radius:14px;color:#fff;font-size:15px}
+.track-input:focus{outline:none;border-color:var(--primary)}
+.track-btn{padding:16px 32px;background:var(--primary);color:#000;border-radius:14px;font-weight:700;letter-spacing:1px;border:none;cursor:pointer;font-size:13px;text-transform:uppercase}
+.track-btn:hover{background:#fff}
+.track-status{display:none;margin-top:32px}
+.track-status.show{display:block}
+.track-step{display:flex;align-items:center;gap:20px;margin-bottom:24px;text-align:left}
+.track-step-icon{width:48px;height:48px;border-radius:50%;background:var(--surface-3);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--on-surface-3);font-size:16px;flex-shrink:0}
+.track-step.active .track-step-icon{background:rgba(201,162,39,0.15);border-color:var(--primary);color:var(--primary)}
+.track-step.completed .track-step-icon{background:var(--primary);border-color:var(--primary);color:#000}
+.track-step-info h4{font-size:15px;color:#fff;margin-bottom:4px}
+.track-step-info p{font-size:13px;color:var(--on-surface-2)}
+.contact-container{max-width:1100px;margin:0 auto;padding:32px 48px 64px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact-info{display:flex;flex-direction:column;gap:32px}
+.contact-card{background:var(--surface-2);border-radius:var(--radius-xl);padding:28px;border:1px solid var(--border);transition:all var(--transition-fast)}
+.contact-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.contact-card i{font-size:24px;color:var(--primary);margin-bottom:16px}
+.contact-card h4{font-size:16px;color:#fff;margin-bottom:8px;font-weight:600}
+.contact-card p{font-size:14px;color:var(--on-surface-2);line-height:1.6}
+.contact-form-side{background:var(--surface-2);border-radius:var(--radius-xl);padding:36px;border:1px solid var(--border)}
+html.light-theme .contact-card h4{color:#1a1a1a!important}
+html.light-theme .contact-card p{color:var(--on-surface-2)!important}
+html.light-theme .contact-form-side h3{color:#1a1a1a!important}
+.contact-form-side h3{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:24px;font-weight:600}
+.story-hero{position:relative;height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.story-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;object-position:center center;}
+.story-hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.35);z-index:1;}
+.story-hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+.story-hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);color:#fff;font-weight:600;margin-bottom:16px}
+html.light-theme .story-hero-content h1{color:#ffffff!important;text-shadow:0 2px 12px rgba(0,0,0,0.9)!important;}
+html.light-theme .story-hero-content p{color:#ffffff!important;text-shadow:0 2px 8px rgba(0,0,0,0.8)!important;}
+html.light-theme .story-section h2{color:#1a1a1a!important}
+html.light-theme .story-section p{color:var(--on-surface-2)!important}
+.story-hero-content p{font-size:16px;color:#ffffff;max-width:500px;margin:0 auto;text-shadow:0 2px 8px rgba(0,0,0,0.8);font-weight:500;}
+.story-section{padding:80px 48px;max-width:1200px;margin:0 auto}
+.story-section h2{font-family:'Playfair Display',serif;font-size:32px;color:#fff;margin-bottom:24px;font-weight:600}
+.story-section p{font-size:15px;color:var(--on-surface-2);line-height:1.9;margin-bottom:20px}
+.story-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;padding:60px 48px;background:var(--surface-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.story-stat{text-align:center}
+.story-stat-num{font-family:'Playfair Display',serif;font-size:48px;color:var(--primary);font-weight:600;line-height:1}
+.story-stat-label{font-size:12px;color:var(--on-surface-2);text-transform:uppercase;letter-spacing:2px;margin-top:8px;font-weight:500}
+.toast{position:fixed;bottom:36px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface-2);color:#fff;padding:14px 28px;border-radius:30px;font-size:13px;font-weight:600;z-index:9990;transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4);border:1px solid var(--border-2);display:flex;align-items:center;gap:10px}
+html.light-theme .toast{background:var(--surface-2)!important;color:#1a1a1a!important}
+html.light-theme .story-stat-label{color:var(--on-surface-2)!important}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--primary)}
+footer{background:var(--surface-2);border-top:1px solid var(--border);padding:60px 48px 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:1px;color:#fff;margin-bottom:12px;font-weight:600}
+.footer-logo span{color:var(--primary);font-style:italic}
+.footer-tagline{font-size:14px;color:var(--on-surface-2);line-height:1.7;max-width:280px;margin-bottom:24px}
+.footer-socials{display:flex;gap:12px}
+.f-social{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.4);transition:all var(--transition-fast);cursor:pointer;background:none}
+.f-social:hover{color:var(--primary);border-color:var(--primary);background:rgba(201,162,39,0.08);transform:translateY(-3px)}
+.footer-col-title{font-size:12px;font-weight:700;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:20px}
+html.light-theme .footer-logo{color:#1a1a1a!important}
+html.light-theme .footer-tagline{color:var(--on-surface-2)!important}
+html.light-theme .footer-col-title{color:#1a1a1a!important}
+html.light-theme .footer-copy{color:var(--on-surface-2)!important}
+html.light-theme .f-social{color:rgba(0,0,0,0.4)!important;border-color:var(--border-2)!important}
+html.light-theme .mob-tab{color:rgba(0,0,0,0.4)!important}
+html.light-theme .mob-label{color:rgba(0,0,0,0.6)!important}
+.footer-links{display:flex;flex-direction:column;gap:12px}
+.footer-links a{font-size:14px;color:var(--on-surface-2);transition:color var(--transition-fast);cursor:pointer}
+.footer-links a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:13px;color:var(--on-surface-3)}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:600;background:rgba(10,10,10,0.95);backdrop-filter:blur(24px);border-top:1px solid var(--border);justify-content:space-around;align-items:center;padding:10px 16px 24px}
+.mob-tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(255,255,255,0.3);cursor:pointer;transition:color var(--transition-fast);padding:4px 12px}
+.mob-tab.active{color:var(--primary)}
+.mob-icon{font-size:20px}
+.mob-label{font-size:10px;font-weight:600;letter-spacing:0.5px}
+.page{display:none;min-height:100vh;padding-top:70px}
+.page.active{display:block}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+.topnav{padding:14px 20px}
+.nav-links{display:none}
+.hero-bottom{padding:20px 20px 100px}
+.hero-title{font-size:36px}
+.discover-btn{font-size:28px}
+.c-item img{height:400px}
+.sec-title-wrap,.cat-tabs-wrap{padding-left:20px;padding-right:20px}
+.shop-search-wrap{padding:0 20px 24px}
+.product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));padding:20px;gap:16px}
+.contact-container,.payment-container{grid-template-columns:1fr;padding:20px;gap:32px}
+.story-stats{grid-template-columns:repeat(2,1fr);padding:40px 20px}
+.story-section{padding:48px 20px}
+footer{padding:40px 20px 24px}
+.footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+.mobile-nav{display:flex}
+.state-block{grid-template-columns:1fr}
+.state-block.reverse{direction:ltr}
+.sb-img-side{min-height:350px}
+.sb-text-side{padding:3rem 1.5rem}
+.sec-title-wrap{padding-left:20px;padding-right:20px}
+.vp-body{flex-direction:column}
+.vp-detail{width:100%;border-left:none;border-top:1px solid var(--border)}
+.form-row{grid-template-columns:1fr}
+.admin-form{padding:20px}
+.wishlist-grid{padding:20px}
+.tracking-container{padding:20px}
+}
+@media(max-width:600px){
+.product-grid{grid-template-columns:1fr 1fr}
+.card-img-wrap{height:220px}
+.footer-grid{grid-template-columns:1fr}
+.story-stats{grid-template-columns:1fr 1fr}
+}
+@keyframes slideInFromRight{0%{opacity:0;transform:translateX(90px)}100%{opacity:1;transform:translateX(0)}}
+.slide-in-right{opacity:0}
+.slide-in-right.animated{animation:slideInFromRight 0.9s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
+.slide-in-right.animated:nth-child(2){animation-delay:0.2s}
+.slide-in-right.animated:nth-child(3){animation-delay:0.4s}
+.ornate-divider{display:flex;align-items:center;justify-content:center;gap:20px;margin:10px auto 30px;max-width:400px;color:var(--primary);opacity:0.8}
+.ornate-divider::before,.ornate-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--primary),transparent)}
+.ornate-icon{font-size:18px;animation:mhPulse 2s infinite ease-in-out}
+@keyframes mhPulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.15);opacity:1}}
+.collection-title{font-family:'Playfair Display',serif;font-size:38px;color:var(--on-surface);margin-bottom:8px}
+.collection-title span{color:var(--primary)}
+.collection-desc{color:var(--on-surface-2);font-size:14px;max-width:600px;margin:0 auto 40px;line-height:1.6}
+.arched-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-bottom:20px}
+.arched-item{position:relative;border-radius:240px 240px 16px 16px;overflow:hidden;border:2px solid var(--primary);background:var(--surface-2);transition:var(--transition);box-shadow:0 10px 30px rgba(0,0,0,0.15)}
+.arched-item:hover{transform:translateY(-12px);box-shadow:0 15px 40px rgba(201,162,39,0.2)}
+.arched-img-wrap{height:440px;overflow:hidden;position:relative}
+.arched-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.6s ease}
+.arched-item:hover .arched-img-wrap img{transform:scale(1.05)}
+.arched-label{padding:22px 15px;color:var(--on-surface);font-family:'Playfair Display',serif;font-size:19px;font-weight:600;border-top:1px solid var(--border);background:var(--surface-2)}
+.step-well-banner{position:relative;height:320px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:40px;margin:20px 0;border:1px solid var(--border-2)}
+.banner-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1621360156942-0f5f0857bb63?w=1600') no-repeat center center;background-size:cover;filter:brightness(0.35) contrast(1.15);transition:transform 6s ease}
+.step-well-banner:hover .banner-bg{transform:scale(1.03)}
+.banner-content{position:relative;z-index:2;text-align:center}
+.banner-text{font-family:'Playfair Display',serif;font-size:30px;color:#fff;max-width:750px;margin:0 auto;line-height:1.45;font-weight:500}
+.banner-text span{color:var(--primary);font-weight:700;font-style:italic}
+.marquee-container{width:100%;overflow:hidden;padding:30px 0;background:var(--surface-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;display:flex}
+.marquee-track{display:flex;width:calc(240px * 20);animation:mhScrollRight 35s linear infinite;gap:24px}
+.marquee-container:hover .marquee-track{animation-play-state:paused}
+.marquee-item{width:240px;flex-shrink:0;background:var(--surface-3);border-radius:12px;border:1px solid var(--border);overflow:hidden;text-align:left;transition:border-color 0.3s}
+.marquee-item:hover{border-color:var(--primary)}
+.marquee-img{height:180px;width:100%;overflow:hidden}
+.marquee-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.marquee-info{padding:14px}
+.marquee-state{font-size:11px;text-transform:uppercase;color:var(--primary);font-weight:700;letter-spacing:1px;margin-bottom:4px}
+.marquee-name{font-size:13px;font-weight:500;color:var(--on-surface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes mhScrollRight{0%{transform:translateX(calc(-240px * 10))}100%{transform:translateX(0)}}
+.mh-states-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px;margin-top:40px}
+.mh-state-card{background:var(--surface-2);border-radius:16px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:all 0.5s cubic-bezier(0.34,1.2,0.64,1);position:relative}
+.mh-state-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,162,39,0.15),transparent);opacity:0;transition:opacity 0.4s;z-index:1;pointer-events:none}
+.mh-state-card:hover{transform:translateY(-12px) scale(1.02);border-color:var(--primary);box-shadow:0 20px 60px rgba(201,162,39,0.25)}
+.mh-state-card:hover::before{opacity:1}
+.mh-state-card:hover .mh-state-card-img img{transform:scale(1.1) rotate(1deg)}
+.mh-state-card-img img{transition:transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.mh-state-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.95) 15%,rgba(10,10,10,0.4) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;transition:background 0.4s}
+.mh-state-card:hover .mh-state-card-overlay{background:linear-gradient(to top,rgba(10,10,10,0.98) 20%,rgba(10,10,10,0.5) 65%,rgba(201,162,39,0.1) 100%)}
+.mh-state-card-title{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:4px;transition:transform 0.4s,color 0.3s}
+.mh-state-card:hover .mh-state-card-title{transform:translateY(-4px);color:var(--primary)}
+.mh-state-card-craft{font-size:12px;color:var(--primary);text-transform:uppercase;letter-spacing:1px;font-weight:600;transition:all 0.4s;opacity:0.7}
+.mh-state-card:hover .mh-state-card-craft{opacity:1;letter-spacing:2px}
+.mh-state-card:hover .card-shop-hint{opacity:1!important;transform:translateY(0)!important}
+.mh-state-card-img{height:380px;position:relative;overflow:hidden}
+.mh-state-card-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.5s}
+.mh-state-card:hover .mh-state-card-img img{transform:scale(1.04)}
+.mh-state-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.95) 15%,rgba(10,10,10,0.4) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;transition:background 0.3s}
+.mh-state-card-title{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:4px}
+.mh-state-card-craft{font-size:12px;color:var(--primary);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.mh-section{padding:80px 48px;position:relative}
+.mh-text-center{text-align:center}
+@media(max-width:900px){.arched-grid{grid-template-columns:repeat(2,1fr)}.mh-section{padding:48px 20px}.mh-states-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+@media(max-width:600px){.arched-grid{grid-template-columns:1fr 1fr}.arched-img-wrap{height:280px}}
+
+/* ===== FEATURE 1: ENHANCED 360° VIEWER WITH CANVAS ROTATION + FABRIC ZOOM LENS ===== */
+.vp-stage{position:relative;overflow:hidden}
+.rotation-canvas-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:5}
+#rotationCanvas{display:none;border-radius:12px}
+.fabric-zoom-lens{position:absolute;width:130px;height:130px;border-radius:50%;border:2.5px solid var(--primary);box-shadow:0 0 0 1px rgba(201,162,39,0.3),0 8px 32px rgba(0,0,0,0.6);pointer-events:none;z-index:20;opacity:0;transition:opacity 0.2s;overflow:hidden;background:rgba(0,0,0,0.2);backdrop-filter:none}
+.fabric-zoom-lens.active{opacity:1}
+.fabric-zoom-lens img{position:absolute;transform-origin:top left;pointer-events:none;image-rendering:crisp-edges}
+.zoom-lens-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(201,162,39,0.5);box-shadow:inset 0 0 20px rgba(0,0,0,0.4)}
+.rotation-frame-strip{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;background:rgba(0,0,0,0.55);padding:8px 14px;border-radius:30px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);z-index:30;align-items:center}
+.rot-frame-dot{width:28px;height:28px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.15);cursor:pointer;overflow:hidden;transition:all 0.25s;flex-shrink:0;background:var(--surface-3)}
+.rot-frame-dot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.rot-frame-dot.active,.rot-frame-dot:hover{border-color:var(--primary);transform:scale(1.15)}
+.rot-coord-hud{position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:1.5px;color:rgba(201,162,39,0.8);background:rgba(0,0,0,0.5);padding:5px 10px;border-radius:8px;font-family:'Inter',monospace;z-index:30;line-height:1.6;pointer-events:none;border:1px solid rgba(201,162,39,0.2)}
+.angle-btn.rot360{background:linear-gradient(135deg,rgba(201,162,39,0.3),rgba(201,162,39,0.1));border-color:rgba(201,162,39,0.5);animation:rotPulse 2s infinite ease-in-out}
+@keyframes rotPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,0.4)}50%{box-shadow:0 0 0 5px rgba(201,162,39,0)}}
+
+/* ===== FEATURE 2: INDIA 3D MAP ===== */
+.india-map-section{padding:80px 48px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 60%,var(--surface) 100%)}
+.india-map-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,162,39,0.04) 0%,transparent 70%);pointer-events:none}
+.india-map-wrap{position:relative;max-width:900px;margin:0 auto;perspective:1200px}
+.india-map-inner{transform-style:preserve-3d;transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.india-map-svg-wrap{position:relative;display:flex;justify-content:center}
+#indiaSvgMap{filter:drop-shadow(0 40px 80px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(201,162,39,0.08));max-width:100%;height:auto}
+.india-state-path{fill:#1e1e1e;stroke:#333;stroke-width:0.8;transition:fill 0.3s,filter 0.3s,stroke 0.3s;cursor:pointer}
+.india-state-path:hover{fill:rgba(201,162,39,0.35);stroke:var(--primary);stroke-width:1.2;filter:drop-shadow(0 0 8px rgba(201,162,39,0.5))}
+.india-state-path.featured{fill:rgba(201,162,39,0.18);stroke:rgba(201,162,39,0.5);stroke-width:1}
+.india-state-path.featured:hover{fill:rgba(201,162,39,0.45)}
+.india-map-tooltip{position:absolute;background:rgba(10,10,10,0.95);border:1px solid rgba(201,162,39,0.4);border-radius:12px;padding:12px 18px;pointer-events:none;opacity:0;transition:opacity 0.2s;z-index:50;backdrop-filter:blur(12px);min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+.india-map-tooltip.show{opacity:1}
+.tooltip-state{font-family:'Playfair Display',serif;font-size:14px;color:#fff;font-weight:600;margin-bottom:2px}
+.tooltip-craft{font-size:10px;color:var(--primary);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.tooltip-price{font-size:12px;color:var(--on-surface-2);margin-top:4px}
+.india-map-legend{display:flex;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap}
+.map-legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--on-surface-2);letter-spacing:1px}
+.map-legend-dot{width:10px;height:10px;border-radius:50%}
+.india-3d-controls{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.map-ctrl-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface-2);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;font-size:13px}
+.map-ctrl-btn:hover{border-color:var(--primary);color:var(--primary);background:rgba(201,162,39,0.1)}
+@media(max-width:900px){.india-map-section{padding:48px 20px}}
+
+/* ===== MAP STATE DETAIL POPUP ===== */
+.map-state-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;backdrop-filter:blur(4px)}
+.map-state-overlay.open{opacity:1;pointer-events:all}
+.map-state-panel{background:var(--surface-2);border-radius:18px;width:300px;max-width:92vw;max-height:82vh;overflow-y:auto;border:1px solid var(--border-2);transform:translateY(24px) scale(0.97);transition:transform 0.35s cubic-bezier(0.34,1.4,0.64,1);box-shadow:0 24px 64px rgba(0,0,0,0.7);scrollbar-width:none}
+.map-state-panel::-webkit-scrollbar{display:none}
+.map-state-overlay.open .map-state-panel{transform:translateY(0) scale(1)}
+.msp-back{display:flex;align-items:center;gap:6px;padding:12px 14px 0;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;background:none;border:none}
+.msp-back:hover{opacity:0.7}
+.msp-back i{font-size:10px}
+.msp-img-wrap{position:relative;margin:10px 14px 0;border-radius:12px;overflow:hidden;height:160px}
+.msp-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.msp-img-badge{position:absolute;bottom:10px;left:10px;background:rgba(201,162,39,0.18);border:1px solid rgba(201,162,39,0.5);backdrop-filter:blur(8px);color:#e8c56e;font-size:7.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;border-radius:5px}
+.msp-body{padding:12px 16px 16px}
+.msp-region{font-size:8.5px;font-weight:700;letter-spacing:2.5px;color:var(--primary);text-transform:uppercase;margin-bottom:4px}
+.msp-state-name{font-family:'Playfair Display',serif;font-size:20px;color:#fff;font-weight:600;line-height:1.1;margin-bottom:2px}
+.msp-craft{font-size:11px;color:var(--primary);font-weight:600;margin-bottom:10px}
+.msp-line{width:30px;height:1.5px;background:linear-gradient(to right,var(--primary),transparent);margin-bottom:10px}
+.msp-desc{font-size:11.5px;color:var(--on-surface-2);line-height:1.7;margin-bottom:12px}
+.msp-feats{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.msp-feat{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:rgba(184,168,144,0.9);line-height:1.4}
+.msp-feat-dot{width:4px;height:4px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:4px}
+.msp-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.msp-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:600}
+.msp-price-label{font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(201,162,39,0.7);text-transform:uppercase}
+.msp-shop-btn{width:100%;padding:10px;background:transparent;border:1px solid rgba(201,162,39,0.5);border-radius:9px;color:var(--primary);font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.3s}
+.msp-shop-btn:hover{background:rgba(201,162,39,0.12);border-color:var(--primary);gap:13px}
+html.light-theme .map-state-panel{background:var(--surface-2)!important}
+html.light-theme .msp-state-name{color:#1a1a1a!important}
+html.light-theme .msp-price{color:#1a1a1a!important}
+html.light-theme .banner-bg{filter:brightness(0.6) contrast(1.2)!important}
+html.light-theme .banner-text{color:#fff!important}
+
+/* ===== FEATURE 3: INSTAGRAM REELS SECTION ===== */
+.reels-section{padding:80px 0 60px;position:relative;overflow:hidden}
+.reels-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,39,0.3),transparent)}
+.reels-header{padding:0 48px 40px;display:flex;justify-content:space-between;align-items:flex-end}
+.reels-brand-pill{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(225,48,108,0.15),rgba(131,58,180,0.15));border:1px solid rgba(225,48,108,0.3);border-radius:30px;padding:8px 18px;font-size:12px;font-weight:600;color:#e1306c;letter-spacing:1px}
+.reels-brand-pill i{font-size:16px}
+.reels-follow-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:30px;border:1px solid rgba(225,48,108,0.4);color:#e1306c;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;background:none}
+.reels-follow-btn:hover{background:rgba(225,48,108,0.1);border-color:#e1306c;transform:translateY(-2px)}
+.reels-track-wrap{overflow-x:auto;scrollbar-width:none;padding:0 48px 20px;display:flex;gap:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.reels-track-wrap::-webkit-scrollbar{display:none}
+.reel-card{flex-shrink:0;width:200px;height:355px;border-radius:18px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;border:1px solid rgba(255,255,255,0.06);transition:transform 0.3s,box-shadow 0.3s;background:var(--surface-3)}
+.reel-card:hover{transform:scale(1.04) translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.6),0 0 0 1px rgba(201,162,39,0.2)}
+.reel-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transition:transform 0.5s ease}
+.reel-card:hover .reel-bg{transform:scale(1.08)}
+.reel-grad{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.1) 100%)}
+.reel-play-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.8);width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.4);opacity:0;transition:all 0.3s;color:#fff;font-size:16px}
+.reel-card:hover .reel-play-ring{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.reel-info{position:absolute;bottom:0;left:0;right:0;padding:18px 14px}
+.reel-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,162,39,0.9);font-weight:700;margin-bottom:4px}
+.reel-title{font-size:12px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:8px}
+.reel-meta{display:flex;align-items:center;gap:10px;font-size:10px;color:rgba(255,255,255,0.5)}
+.reel-views{display:flex;align-items:center;gap:4px}
+.reel-ig-badge{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff}
+.reel-story-ring{position:absolute;top:8px;left:12px;width:36px;height:36px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.reel-story-avatar{width:100%;height:100%;border-radius:50%;background:var(--surface-2);border:2px solid var(--surface-3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--primary);font-weight:700}
+.reels-nav-row{display:flex;justify-content:center;gap:12px;margin-top:16px}
+.reels-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface-2);color:rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s}
+html.light-theme .reels-nav-btn{color:rgba(0,0,0,0.7)!important;border:1.5px solid rgba(0,0,0,0.25)!important;background:#e0e0e0!important;border-radius:50%!important;box-shadow:0 2px 6px rgba(0,0,0,0.15)!important}
+html.light-theme .reels-nav-btn:hover{color:#e1306c!important;border-color:rgba(225,48,108,0.5)!important;background:rgba(225,48,108,0.08)!important}
+
+.reels-nav-btn:hover{border-color:rgba(225,48,108,0.5);color:#e1306c;background:rgba(225,48,108,0.08)}
+@media(max-width:900px){.reels-header{padding:0 20px 28px;flex-direction:column;align-items:flex-start;gap:16px}.reels-track-wrap{padding:0 20px 16px}}
+
+/* ===== FEATURE 4: STATE SHOWCASE CARDS — LUXURY CULTURAL VISUAL RICHNESS ===== */
+.showcase-section{padding:100px 48px 80px;position:relative}
+.showcase-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--primary),transparent)}
+.showcase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;border-radius:24px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,0.5)}
+.showcase-card{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:var(--surface-3)}
+.showcase-card.tall{grid-row:span 2;aspect-ratio:auto}
+.showcase-card.wide{grid-column:span 2;aspect-ratio:16/9}
+.sc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.showcase-card:hover .sc-img{transform:scale(1.1)}
+.sc-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.3) 50%,transparent 100%);transition:background 0.4s}
+.showcase-card:hover .sc-overlay{background:linear-gradient(0deg,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 55%,rgba(0,0,0,0.1) 100%)}
+.sc-badge{position:absolute;top:16px;left:16px;background:rgba(201,162,39,0.15);border:1px solid rgba(201,162,39,0.4);color:#e8c56e;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:700;backdrop-filter:blur(8px)}
+.sc-num{position:absolute;top:16px;right:16px;font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;-webkit-text-stroke:1px rgba(201,162,39,0.2);color:transparent;line-height:1;opacity:0.6;transition:opacity 0.3s}
+.showcase-card:hover .sc-num{opacity:1}
+.sc-body{position:absolute;bottom:0;left:0;right:0;padding:24px;transform:translateY(8px);transition:transform 0.4s}
+.showcase-card:hover .sc-body{transform:translateY(0)}
+.sc-region{font-size:9px;letter-spacing:3px;color:var(--primary);text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.sc-name{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,28px);color:#fff;font-weight:600;line-height:1.15;margin-bottom:8px}
+.sc-craft{font-size:11px;color:rgba(184,168,144,0.8);letter-spacing:0.5px;margin-bottom:14px;line-height:1.5}
+.sc-divider{width:32px;height:1.5px;background:linear-gradient(90deg,var(--primary),transparent);margin-bottom:12px;transition:width 0.4s}
+.showcase-card:hover .sc-divider{width:56px}
+.sc-cta{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--primary);letter-spacing:2px;text-transform:uppercase;font-weight:700;opacity:0;transform:translateY(8px);transition:all 0.3s 0.05s}
+.showcase-card:hover .sc-cta{opacity:1;transform:translateY(0)}
+.sc-price-tag{position:absolute;bottom:24px;right:16px;font-family:'Cormorant Garamond',serif;font-size:20px;color:rgba(255,255,255,0.9);font-weight:600;opacity:0;transition:opacity 0.3s 0.1s}
+.showcase-card:hover .sc-price-tag{opacity:1}
+.sc-texture{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.4' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E");pointer-events:none}
+.showcase-below{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px;border-radius:0 0 24px 24px;overflow:hidden}
+.sc-mini{position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:var(--surface-3)}
+.sc-mini .sc-img{transition:transform 0.6s}
+.sc-mini:hover .sc-img{transform:scale(1.12)}
+.sc-mini-label{position:absolute;inset:0;display:flex;align-items:flex-end;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,0.7) 0%,transparent 50%)}
+.sc-mini-text{font-family:'Playfair Display',serif;font-size:13px;color:#fff;font-weight:600;line-height:1.2}
+.sc-mini-sub{font-size:9px;color:var(--primary);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+@media(max-width:900px){.showcase-section{padding:60px 20px 48px}.showcase-grid{grid-template-columns:1fr 1fr}.showcase-card.wide{grid-column:span 2}.showcase-card.tall{grid-row:auto;aspect-ratio:3/4}.showcase-below{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.showcase-grid{grid-template-columns:1fr}.showcase-card.wide{grid-column:span 1}.showcase-below{grid-template-columns:1fr 1fr}}
+
+
+
+/* ===== STATE CARDS + RIGHT PANEL LAYOUT ===== */
+.india-map-section{padding:80px 48px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 60%,var(--surface) 100%)}
+.india-map-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,162,39,0.04) 0%,transparent 70%);pointer-events:none}
+.state-panel-layout{display:grid;grid-template-columns:1fr 360px;gap:24px;max-width:1300px;margin:0 auto;align-items:start}
+.state-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sc-card{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:3/4;border:2px solid var(--border);transition:transform 0.35s cubic-bezier(0.34,1.2,0.64,1),border-color 0.3s,box-shadow 0.3s;background:var(--surface-3)}
+.sc-card:hover,.sc-card.active{transform:translateY(-6px) scale(1.03);border-color:var(--primary);box-shadow:0 16px 40px rgba(201,162,39,0.25)}
+.sc-card img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.6s ease}
+.sc-card:hover img,.sc-card.active img{transform:scale(1.08)}
+.sc-card-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.15) 55%,transparent 100%)}
+.sc-card-top{position:absolute;top:9px;right:9px;font-size:15px;z-index:2;transition:transform 0.3s}
+.sc-card:hover .sc-card-top,.sc-card.active .sc-card-top{transform:scale(1.3) rotate(12deg)}
+.sc-card-featured{position:absolute;top:9px;left:9px;background:rgba(201,162,39,0.18);border:1px solid rgba(201,162,39,0.5);color:#e8c56e;font-size:7px;font-weight:700;letter-spacing:1.5px;padding:3px 7px;border-radius:8px;text-transform:uppercase;backdrop-filter:blur(6px);z-index:2}
+.sc-card-info{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 12px;z-index:2}
+.sc-card-state{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:2px}
+.sc-card.active .sc-card-state{color:var(--primary)}
+.sc-card-craft{font-size:8px;color:rgba(201,162,39,0.85);font-weight:600;letter-spacing:0.5px}
+/* Right Panel */
+.state-right-panel{background:var(--surface-2);border-radius:20px;border:1px solid var(--border-2);overflow:hidden;min-height:580px;display:flex;flex-direction:column;position:sticky;top:80px}
+.srp-default{padding:28px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;gap:10px;justify-content:center}
+.srp-default-icon{width:56px;height:56px;border-radius:50%;background:rgba(201,162,39,0.1);border:1px solid rgba(201,162,39,0.3);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--primary);margin-bottom:4px}
+.srp-default-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;font-weight:600}
+.srp-default-sub{font-size:0.78rem;color:var(--on-surface-2);line-height:1.7;max-width:260px}
+.srp-quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;width:100%}
+.srp-quick{position:relative;border-radius:10px;overflow:hidden;cursor:pointer;aspect-ratio:1;border:1px solid var(--border);transition:transform 0.3s,border-color 0.3s}
+.srp-quick:hover{transform:scale(1.06);border-color:var(--primary)}
+.srp-quick img{width:100%;height:100%;object-fit:cover;display:block}
+.srp-quick span{position:absolute;bottom:0;left:0;right:0;padding:3px 4px 4px;font-size:7.5px;font-weight:700;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,0.85),transparent);text-align:center}
+/* Detail card inside right panel */
+.srp-detail{display:flex;flex-direction:column;flex:1}
+.srp-back{display:flex;align-items:center;gap:8px;padding:12px 18px;font-size:10px;color:var(--primary);background:rgba(201,162,39,0.06);border-bottom:1px solid var(--border);letter-spacing:1px;text-transform:uppercase;font-weight:700;cursor:pointer;border:none;width:100%;text-align:left;font-family:'Inter',sans-serif;border-bottom:1px solid var(--border)}
+.srp-back:hover{background:rgba(201,162,39,0.12)}
+.srp-img-wrap{position:relative;height:200px;overflow:hidden;flex-shrink:0}
+.srp-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.6s}
+.srp-detail:hover .srp-img-wrap img{transform:scale(1.05)}
+.srp-img-badge{position:absolute;bottom:10px;left:12px;background:rgba(201,162,39,0.15);border:1px solid rgba(201,162,39,0.4);color:#e8c56e;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;font-weight:700;backdrop-filter:blur(6px);border-radius:4px}
+.srp-body{padding:18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.srp-region{font-size:9px;letter-spacing:2.5px;color:rgba(201,162,39,0.7);text-transform:uppercase;font-weight:700}
+.srp-state-name{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;font-weight:600;line-height:1.1}
+.srp-craft{font-size:11px;color:var(--primary);font-weight:700;letter-spacing:0.5px}
+.srp-line{height:1.5px;background:linear-gradient(90deg,var(--primary),transparent);margin:2px 0}
+.srp-desc{font-size:11.5px;color:var(--on-surface-2);line-height:1.75}
+.srp-feats{display:flex;flex-direction:column;gap:5px}
+.srp-feat{display:flex;align-items:center;gap:7px;font-size:10.5px;color:rgba(184,168,144,0.9)}
+.srp-feat::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.srp-price-row{display:flex;align-items:baseline;gap:8px;margin-top:2px}
+.srp-price{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:#fff;font-weight:600}
+.srp-price-label{font-size:9px;color:rgba(201,162,39,0.7);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.srp-shop-btn{margin:8px 0 4px;padding:11px 18px;background:transparent;border:1px solid rgba(201,162,39,0.4);color:var(--primary);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:10px}
+.srp-shop-btn:hover{background:rgba(201,162,39,0.12);border-color:var(--primary);gap:13px}
+html.light-theme .srp-state-name{color:#1a1a1a!important}
+html.light-theme .srp-price{color:#1a1a1a!important}
+html.light-theme .srp-default-title{color:#1a1a1a!important}
+html.light-theme .srp-default-sub{color:var(--on-surface-2)!important}
+html.light-theme .state-right-panel{background:var(--surface-2)!important}
+@media(max-width:1100px){.state-panel-layout{grid-template-columns:1fr;gap:20px}.state-right-panel{position:static;min-height:auto}.state-cards-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){.state-cards-grid{grid-template-columns:repeat(3,1fr)}.india-map-section{padding:48px 20px}}
+@media(max-width:480px){.state-cards-grid{grid-template-columns:repeat(2,1fr)}}
+
+</style><base target="_blank">
+</head>
+<body>
+<div class="grain"></div>
+<nav class="topnav" id="topNav">
+  <div class="nav-logo" onclick="showPage('hero')"><i class="fa-solid fa-crown" style="margin-right:8px;color:var(--primary);"></i>Vastra<span>Hub</span></div>
+  <div class="nav-links">
+    <a class="active" onclick="showPage('hero')">Home</a>
+    <a onclick="showPage('shop')">Shop</a>
+    <a onclick="showPage('states')">States</a>
+    <a onclick="showPage('story')">Our Story</a>
+    <a onclick="showPage('contact')">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-icon" onclick="showPage('shop')" title="Search"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <div class="nav-icon" onclick="showPage('wishlist')" title="Wishlist"><i class="fa-regular fa-heart"></i></div>
+    <div class="nav-icon cart-wrap" onclick="openCart()" title="Cart"><i class="fa-solid fa-bag-shopping"></i><div class="cart-badge" id="cartBadge">0</div></div>
+    <div class="nav-icon" onclick="showPage('admin')" title="Add Product"><i class="fa-solid fa-plus"></i></div>
+    <div class="nav-icon" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-moon"></i></div>
+    <!-- PROFILE MENU -->
+    <div class="profile-wrapper">
+      <div class="profile-icon" onclick="toggleProfileMenu()" title="Profile">
+        <span id="profileInitial">V</span>
+        <img id="profileImage" style="display:none;" src="" alt="Profile">
+      </div>
+      <div class="profile-menu" id="profileMenu">
+        <div class="profile-header">
+          <div class="profile-avatar" onclick="document.getElementById('profileImageInput').click()">
+            <span id="avatarInitial">V</span>
+            <img id="avatarImage" style="display:none;" src="" alt="Avatar">
+            <div class="profile-avatar-upload">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+          </div>
+          <div class="profile-info">
+            <div class="profile-name" id="profileUserName">Your Account</div>
+            <div class="profile-email" id="profileUserEmail">user@vastrahub.com</div>
+          </div>
+        </div>
+        <div class="profile-menu-item" onclick="showProfilePage('account')"><i class="fa-solid fa-user"></i>My Account</div>
+        <div class="profile-menu-item" onclick="showProfilePage('orders')"><i class="fa-solid fa-box"></i>My Orders</div>
+        <div class="profile-menu-item" onclick="showProfilePage('addresses')"><i class="fa-solid fa-location-dot"></i>Addresses</div>
+        <div class="profile-menu-item" onclick="showProfilePage('wishlist')"><i class="fa-solid fa-heart"></i>Saved Items</div>
+        <div class="profile-divider"></div>
+        <div class="profile-menu-item" onclick="showProfilePage('settings')"><i class="fa-solid fa-gear"></i>Settings</div>
+        <div class="profile-menu-item" onclick="logout()"><i class="fa-solid fa-sign-out-alt"></i>Logout</div>
+      </div>
+    </div>
+    <input type="file" id="profileImageInput" accept="image/*" onchange="uploadProfileImage(event)" style="display:none">
+  </div>
+</nav>
+
+
+<!-- PAGE: HERO -->
+<div class="page active" id="page-hero">
+<main id="hero" style="background:linear-gradient(135deg,#1a0a0a 0%,#0a0a0a 100%);transition:background 0.8s cubic-bezier(0.4,0,0.2,1);">
+  <div class="ghost-wrap"><h1 class="ghost-text" id="ghostText">KANJEEVARAM</h1></div>
+  <div class="carousel-stage" id="carouselStage"></div>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-bottom">
+    <div class="hero-left">
+      <div>
+        <div class="hero-tag"><i class="fa-solid fa-gem" style="margin-right:6px;"></i>Heritage Collection</div>
+        <div class="hero-title" id="heroTitle">THE SILK<br>SERIES</div>
+      </div>
+      <div class="hero-nav">
+        <button class="h-nav-btn" id="heroPrev"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="h-nav-btn" id="heroNext"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="discover-btn" onclick="showPage('shop')">DISCOVER <span class="arr"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
+      <div class="series-pill" id="seriesPill">Curated Series 01 / 06</div>
+    </div>
+  </div>
+</main>
+
+<!-- SECTION 1: Explore Heritage Collection (Image 1) -->
+<section class="mh-section mh-text-center" style="padding:80px 48px 60px;">
+  <div class="reveal-line-wrap">
+  <div class="reveal-line"></div>
+  <h2 class="collection-title">Explore the <span>Heritage</span> Collection</h2>
+</div>
+  <div class="ornate-divider"><i class="fa-solid fa-gopuram ornate-icon"></i></div>
+  <p class="collection-desc">Timeless majestic regional designs crafted with deep generational devotion, inspired directly by traditional Indian fine-arts. Authentic handloom weaves curated for the absolute connoisseur.</p>
+  <div class="arched-grid">
+    <div class="arched-item">
+      <div class="arched-img-wrap"><img src="images/Andhra Pradesh/cotten sarees 3.jpg" alt="Bandhani"></div>
+      <div class="arched-label">Bandhani Weaves</div>
+    </div>
+    <div class="arched-item">
+      <div class="arched-img-wrap"><img src="images/Andhra Pradesh/traditional handloom sarees 1.jpg" alt="Leheriya"></div>
+      <div class="arched-label">Leheriya Crafts</div>
+    </div>
+    <div class="arched-item">
+      <div class="arched-img-wrap"><img src="images/Kerala/Settu Mundu.jpg" alt="Gota Patti"></div>
+      <div class="arched-label">Gota Patti Work</div>
+    </div>
+    <div class="arched-item">
+      <div class="arched-img-wrap"><img src="images/Goa/Traditional Goan Saree.jpg" alt="Zari"></div>
+      <div class="arched-label">Zari Embroidery</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Festive Banner (Image 2) -->
+<section class="mh-section" style="padding:10px 48px 30px;">
+  <div class="step-well-banner">
+    <div class="banner-bg" style="background-image:url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1600')!important"></div>
+    <div class="banner-content">
+      <p class="banner-text" style="color:#fff!important;text-shadow:0 2px 8px rgba(0,0,0,0.8);">Celebrate the Festive Season in Ultimate Regal Style<br>Enjoy <span>Flat 20% Off</span> across our entire handloom heritage catalog.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: Trending State Weaves Marquee (Image 3) -->
+<section class="mh-section" style="padding:20px 0 50px;">
+  <div class="mh-text-center" style="margin-bottom:24px;padding:0 48px;">
+    <span style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--primary);font-weight:700;">Live From the Loom</span>
+    <h3 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--on-surface);margin-top:4px;">Trending State Weaves</h3>
+  </div>
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Andhra Pradesh/traditional handloom sarees 2.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Tamil Nadu</div><div class="marquee-name">Kanjeevaram Kora Silk</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Andhra Pradesh/langa voni 3.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Uttar Pradesh</div><div class="marquee-name">Tanchoi Banarasi Brocade</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Arunachal Pradesh/gale 2.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Gujarat</div><div class="marquee-name">Patan Patola Silk Heritage</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Andhra Pradesh/Famous Sarees/gadwal saree.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Maharashtra</div><div class="marquee-name">Paithani Yeola Pure Zari</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Arunachal Pradesh/Beaded ornaments dress style.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Madhya Pradesh</div><div class="marquee-name">Chanderi Katan Organza</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Assam/Assam Cotton Saree.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Odisha</div><div class="marquee-name">Sambalpuri Ikkat Handloom</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Assam/Eri Silk Saree 1.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Assam</div><div class="marquee-name">Muga Golden Silk Mekhela</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Andhra Pradesh/Famous Sarees/darmavaram saree.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Andhra Pradesh</div><div class="marquee-name">Venkatagiri Pattu Weave</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Assam/Mekhela Chador 2.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Telangana</div><div class="marquee-name">Pochampally Ikat Traditional</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Assam/Pat Silk Saree 2.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Kerala</div><div class="marquee-name">Kasavu Gold Border Cotton</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Bihar/Lehenga Choli 2.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Tamil Nadu</div><div class="marquee-name">Kanjeevaram Kora Silk</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Assam/Assam Cotton Saree.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Uttar Pradesh</div><div class="marquee-name">Tanchoi Banarasi Brocade</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Bihar/Seedha Aanchal Saree Style 1.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Gujarat</div><div class="marquee-name">Patan Patola Silk Heritage</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Andhra Pradesh/traditional handloom sarees 2.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Maharashtra</div><div class="marquee-name">Paithani Yeola Pure Zari</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Chhattisgarh/Polka Blouse.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Madhya Pradesh</div><div class="marquee-name">Chanderi Katan Organza</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Goa/Kunbi Saree.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Odisha</div><div class="marquee-name">Sambalpuri Ikkat Handloom</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Gujarat/Chaniya Choli.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Assam</div><div class="marquee-name">Muga Golden Silk Mekhela</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Gujarat/Patola Saree.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Andhra Pradesh</div><div class="marquee-name">Venkatagiri Pattu Weave</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Kerala/Mundum Neriyathum.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Telangana</div><div class="marquee-name">Pochampally Ikat Traditional</div></div></div>
+      <div class="marquee-item"><div class="marquee-img"><img src="images/Kerala/Settu Mundu.jpg" alt="Saree"></div><div class="marquee-info"><div class="marquee-state">Kerala</div><div class="marquee-name">Kasavu Gold Border Cotton</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEW FEATURE 4: STATE SHOWCASE CARDS — LUXURY CULTURAL VISUAL RICHNESS ===== -->
+<section class="showcase-section reveal">
+  <div class="mh-text-center">
+    <span class="sec-eyebrow"><i class="fa-solid fa-palette" style="margin-right:6px;"></i>Cultural Tapestry</span>
+    <div class="sec-title" style="margin-top:8px;">INDIA'S <span>CULTURAL</span> LEGACY</div>
+    <p class="sec-desc">Eight extraordinary traditions. One heritage platform.</p>
+  </div>
+  <div class="showcase-grid">
+    <div class="showcase-card tall" onclick="showPage('states')">
+      <img class="sc-img" src="images/Andhra Pradesh/Famous Sarees/pochampally style saree 1.jpg" alt="Kanjeevaram">
+      <div class="sc-overlay"></div>
+      <div class="sc-texture"></div>
+      <div class="sc-badge"><i class="fa-solid fa-gem" style="margin-right:5px;"></i>Heritage Select</div>
+      <div class="sc-num">01</div>
+      <div class="sc-body">
+        <div class="sc-region">Tamil Nadu · South India</div>
+        <div class="sc-name">Kanjeevaram<br>Silk</div>
+        <div class="sc-craft">The queen of silks — woven with pure mulberry silk and real gold zari threads by master weavers of Kanchipuram.</div>
+        <div class="sc-divider"></div>
+        <div class="sc-cta">Explore <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></div>
+      </div>
+      <div class="sc-price-tag">From ₹8,999</div>
+    </div>
+    <div class="showcase-card" onclick="showPage('states')">
+      <img class="sc-img" src="images/Andhra Pradesh/Famous Sarees/kalamkari print saree 1.jpg" alt="Kalamkari">
+      <div class="sc-overlay"></div>
+      <div class="sc-texture"></div>
+      <div class="sc-badge">GI Certified</div>
+      <div class="sc-num">02</div>
+      <div class="sc-body">
+        <div class="sc-region">Andhra Pradesh</div>
+        <div class="sc-name">Kalamkari Hand-Painted Art</div>
+        <div class="sc-craft">Ancient pen-work art using vegetable dyes</div>
+        <div class="sc-divider"></div>
+        <div class="sc-cta">Explore <i class="fa-solid fa-arrow-right" style="font-size:8px;"></i></div>
+      </div>
+    </div>
+    <div class="showcase-card" onclick="showPage('states')">
+      <img class="sc-img" src="images/Gujarat/Chaniya Choli.jpg" alt="Bandhani">
+      <div class="sc-overlay"></div>
+      <div class="sc-texture"></div>
+      <div class="sc-badge">Festival Wear</div>
+      <div class="sc-num">03</div>
+      <div class="sc-body">
+        <div class="sc-region">Gujarat · West India</div>
+        <div class="sc-name">Bandhani Tie-Dye Magic</div>
+        <div class="sc-craft">Thousands of tiny hand-tied knots creating sacred geometry</div>
+        <div class="sc-divider"></div>
+        <div class="sc-cta">Explore <i class="fa-solid fa-arrow-right" style="font-size:8px;"></i></div>
+      </div>
+    </div>
+    <div class="showcase-card wide" onclick="showPage('states')">
+      <img class="sc-img" src="images/Kerala/Kasavu Saree.jpg" alt="Kerala">
+      <div class="sc-overlay"></div>
+      <div class="sc-texture"></div>
+      <div class="sc-badge"><i class="fa-solid fa-crown" style="margin-right:5px;"></i>Bridal Collection</div>
+      <div class="sc-num">04</div>
+      <div class="sc-body">
+        <div class="sc-region">Kerala · God's Own Country</div>
+        <div class="sc-name">Kasavu — Kerala's Golden Grace</div>
+        <div class="sc-craft">Pure white silk with authentic gold zari borders. The iconic saree worn at every Kerala wedding and festival since antiquity.</div>
+        <div class="sc-divider"></div>
+        <div class="sc-cta">Explore Collection <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></div>
+      </div>
+      <div class="sc-price-tag">From ₹6,499</div>
+    </div>
+  </div>
+  <div class="showcase-below">
+    <div class="sc-mini" onclick="showPage('states')">
+      <img class="sc-img" src="images/Assam/Muga Silk Saree 1.jpg" alt="Assam">
+      <div class="sc-mini-label"><div><div class="sc-mini-text">Muga Silk</div><div class="sc-mini-sub">Assam</div></div></div>
+    </div>
+    <div class="sc-mini" onclick="showPage('states')">
+      <img class="sc-img" src="images/Bihar/Tussar Silk Sarees 1.jpg" alt="Bihar">
+      <div class="sc-mini-label"><div><div class="sc-mini-text">Tussar Silk</div><div class="sc-mini-sub">Bihar</div></div></div>
+    </div>
+    <div class="sc-mini" onclick="showPage('states')">
+      <img class="sc-img" src="images/Arunachal Pradesh/gale 1.jpg" alt="Tribal">
+      <div class="sc-mini-label"><div><div class="sc-mini-text">Tribal Weaves</div><div class="sc-mini-sub">Arunachal</div></div></div>
+    </div>
+    <div class="sc-mini" onclick="showPage('states')">
+      <img class="sc-img" src="images/Goa/Nav-Vari Saree.jpg" alt="Goa">
+      <div class="sc-mini-label"><div><div class="sc-mini-text">Coastal Heritage</div><div class="sc-mini-sub">Goa</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEW FEATURE 3: INSTAGRAM REELS SECTION ===== -->
+<section class="reels-section reveal">
+  <div class="reels-header">
+    <div>
+      <div class="reels-brand-pill"><i class="fa-brands fa-instagram"></i> @vastrahub.in</div>
+      <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--on-surface);margin-top:12px;font-weight:600;">From Our <span style="color:var(--primary);font-style:italic;">Reels</span></div>
+      <p style="font-size:13px;color:var(--on-surface-2);margin-top:4px;">Weaving stories, one reel at a time</p>
+    </div>
+    <button class="reels-follow-btn"><i class="fa-brands fa-instagram"></i> Follow Us</button>
+  </div>
+  <div class="reels-track-wrap" id="reelsTrack">
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Assam/Assam\ Cotton\ Saree\ 1.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Tamil Nadu</div>
+        <div class="reel-title">Kanjeevaram Silk — The Weaving Process</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 2.4M</div><i class="fa-solid fa-heart"></i> 84K</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Assam/Eri\ Silk\ Saree\ 1.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Andhra Pradesh</div>
+        <div class="reel-title">Kalamkari Art — Natural Dye Magic</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 1.8M</div><i class="fa-solid fa-heart"></i> 62K</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Assam/Mekhela\ Chador\ 2.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Gujarat</div>
+        <div class="reel-title">Bandhani Tie-Dye — 1000 Knots</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 3.1M</div><i class="fa-solid fa-heart"></i> 118K</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Assam/Pat\ Silk\ Saree1.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Kerala</div>
+        <div class="reel-title">Kasavu Saree — Gold Zari Draping</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 4.2M</div><i class="fa-solid fa-heart"></i> 201K</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Assam/Eri\ Silk\ Saree\ 1.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Assam</div>
+        <div class="reel-title">Muga Silk — The Golden Thread</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 1.1M</div><i class="fa-solid fa-heart"></i> 47K</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Goa/Pano\ Bhaju.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Odisha</div>
+        <div class="reel-title">Sambalpuri Ikat — The Ancient Pattern</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 890K</div><i class="fa-solid fa-heart"></i> 38K</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-bg" style="background-image:url('images/Gujarat/Ghagra\ Choli.jpg')"></div>
+      <div class="reel-grad"></div>
+      <div class="reel-ig-badge"><i class="fa-brands fa-instagram"></i></div>
+      <div class="reel-story-ring"><div class="reel-story-avatar">VH</div></div>
+      <div class="reel-play-ring"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+      <div class="reel-info">
+        <div class="reel-tag">Rajasthan</div>
+        <div class="reel-title">Leheriya Waves — Monsoon Colors</div>
+        <div class="reel-meta"><div class="reel-views"><i class="fa-solid fa-eye"></i> 2.7M</div><i class="fa-solid fa-heart"></i> 93K</div>
+      </div>
+    </div>
+  </div>
+  <div class="reels-nav-row">
+    <div class="reels-nav-btn" onclick="scrollReels(-1)"><i class="fa-solid fa-arrow-left"></i></div>
+    <div class="reels-nav-btn" onclick="scrollReels(1)"><i class="fa-solid fa-arrow-right"></i></div>
+  </div>
+</section>
+
+<!-- ===== FEATURED STATES SHOWCASE ===== -->
+<section class="featured-states-section reveal">
+  <div class="mh-text-center" style="padding-bottom:60px;">
+    <span class="sec-eyebrow"><i class="fa-solid fa-sparkles" style="margin-right:6px;"></i>Explore By State</span>
+    <!-- INDIA'S CULTURAL LEGACY -->
+<div class="reveal-line-wrap">
+  <div class="reveal-line"></div>
+  <div class="sec-title" style="margin-top:8px;">INDIA'S <span>CULTURAL</span> LEGACY</div>
+</div>
+<p class="sec-desc">Discover the artisanal traditions of India's most celebrated textile regions</p>
+</div>
+
+<div class="featured-states-grid">
+    <!-- Featured State 1 -->
+    <div class="featured-state-card featured-large" onclick="goToState('Andhra Pradesh')">
+      <div class="fsc-image" style="background-image:url('images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg')"></div>
+      <div class="fsc-overlay"></div>
+      <div class="fsc-content">
+        <div class="fsc-badge">★ FEATURED</div>
+        <div class="fsc-title">Kalamkari Art</div>
+        <div class="fsc-state">Andhra Pradesh</div>
+        <div class="fsc-desc">Hand-painted textile artistry with ancient motifs</div>
+      </div>
+      <div class="fsc-hover-btn"><i class="fa-solid fa-arrow-right"></i> Explore Collection</div>
+    </div>
+
+    <!-- Featured State 2 -->
+    <div class="featured-state-card" onclick="goToState('Tamil Nadu')">
+      <div class="fsc-image" style="background-image:url('images/Andhra Pradesh/Famous Sarees/pochampally style saree 1.jpg')"></div>
+      <div class="fsc-overlay"></div>
+      <div class="fsc-content">
+        <div class="fsc-badge">★ FEATURED</div>
+        <div class="fsc-title">Kanjeevaram Silk</div>
+        <div class="fsc-state">Tamil Nadu</div>
+        <div class="fsc-desc">Pure silk with golden zari borders</div>
+      </div>
+      <div class="fsc-hover-btn"><i class="fa-solid fa-arrow-right"></i> Shop Now</div>
+    </div>
+
+    <!-- Featured State 3 -->
+    <div class="featured-state-card" onclick="goToState('Gujarat')">
+      <div class="fsc-image" style="background-image:url('images/Gujarat/Patola Saree.jpg')"></div>
+      <div class="fsc-overlay"></div>
+      <div class="fsc-content">
+        <div class="fsc-badge">HANDWOVEN</div>
+        <div class="fsc-title">Bandhani & Patola</div>
+        <div class="fsc-state">Gujarat</div>
+        <div class="fsc-desc">Tie-dye and double ikat traditions</div>
+      </div>
+      <div class="fsc-hover-btn"><i class="fa-solid fa-arrow-right"></i> Shop Now</div>
+    </div>
+
+    <!-- Featured State 4 -->
+    <div class="featured-state-card featured-large" onclick="goToState('Kerala')">
+      <div class="fsc-image" style="background-image:url('images/Kerala/Kasavu Saree.jpg')"></div>
+      <div class="fsc-overlay"></div>
+      <div class="fsc-content">
+        <div class="fsc-badge">BRIDAL CHOICE</div>
+        <div class="fsc-title">Kasavu Gold Zari</div>
+        <div class="fsc-state">Kerala</div>
+        <div class="fsc-desc">Traditional Kerala wedding sarees with heritage borders</div>
+      </div>
+      <div class="fsc-hover-btn"><i class="fa-solid fa-arrow-right"></i> View Collection</div>
+    </div>
+
+    <!-- Featured State 5 -->
+    <div class="featured-state-card" onclick="goToState('Assam')">
+      <div class="fsc-image" style="background-image:url('images/Assam/Eri Silk Saree 1.jpg')"></div>
+      <div class="fsc-overlay"></div>
+      <div class="fsc-content">
+        <div class="fsc-badge">PURE SILK</div>
+        <div class="fsc-title">Muga & Pat Silk</div>
+        <div class="fsc-state">Assam</div>
+        <div class="fsc-desc">Golden natural silk from northeastern India</div>
+      </div>
+      <div class="fsc-hover-btn"><i class="fa-solid fa-arrow-right"></i> Shop Now</div>
+    </div>
+
+    <!-- Featured State 6 -->
+    <div class="featured-state-card" onclick="goToState('Rajasthan')">
+      <div class="fsc-image" style="background-image:url('images/Gujarat/Bandhani Saree.jpg')"></div>
+      <div class="fsc-overlay"></div>
+      <div class="fsc-content">
+        <div class="fsc-badge">TRADITIONAL</div>
+        <div class="fsc-title">Leheriya & Bandhani</div>
+        <div class="fsc-state">Rajasthan</div>
+        <div class="fsc-desc">Royal wave patterns and sacred geometry</div>
+      </div>
+      <div class="fsc-hover-btn"><i class="fa-solid fa-arrow-right"></i> Shop Now</div>
+    </div>
+  </div>
+
+  <!-- View All States Button -->
+  <div style="text-align:center;margin-top:60px;">
+    <button class="view-all-states-btn" onclick="showPage('states')">
+      <i class="fa-solid fa-earth-asia"></i> Explore All 16 States <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</section>
+
+<!-- SECTION 4 & 5: Explore Indian States Handlooms + States Grid (Images 4 & 5) -->
+<section class="mh-section mh-text-center" style="padding-bottom:80px;">
+  <span style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--primary);" class="slide-in-right">Diverse Geographic Artistry</span>
+  <h2 class="collection-title slide-in-right" style="margin-top:6px;overflow:hidden;">Explore <span>Indian States</span> Handlooms</h2>
+  <p class="collection-desc slide-in-right">Click any state card below to explore signature artisan fabrics and collection highlights.</p>
+  <div class="mh-states-grid" id="mhStatesGridContainer"></div>
+</section>
+
+</div>
+
+<!-- PAGE: SHOP -->
+<div class="page" id="page-shop">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-solid fa-store" style="margin-right:6px;"></i>Curated Collections</div>
+    <div class="sec-title">SHOP ALL <span>COLLECTIONS</span></div>
+    <p class="sec-desc">Discover authentic handwoven sarees and ethnic wear from every corner of India</p>
+  </div>
+  <div class="shop-search-wrap">
+    <div class="shop-search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search sarees, states, fabrics..." id="shopSearch" oninput="filterShopSearch()">
+    </div>
+  </div>
+  <div class="cat-tabs-wrap" id="shopTabs">
+    <div class="cat-tab active" onclick="filterShopState('all',this)">All States</div>
+    <div class="cat-tab" onclick="filterShopState('Andhra Pradesh',this)">Andhra Pradesh</div>
+    <div class="cat-tab" onclick="filterShopState('Arunachal Pradesh',this)">Arunachal Pradesh</div>
+    <div class="cat-tab" onclick="filterShopState('Assam',this)">Assam</div>
+    <div class="cat-tab" onclick="filterShopState('Bihar',this)">Bihar</div>
+    <div class="cat-tab" onclick="filterShopState('Chhattisgarh',this)">Chhattisgarh</div>
+    <div class="cat-tab" onclick="filterShopState('Goa',this)">Goa</div>
+    <div class="cat-tab" onclick="filterShopState('Gujarat',this)">Gujarat</div>
+    <div class="cat-tab" onclick="filterShopState('Kerala',this)">Kerala</div>
+</div>
+  <div class="product-grid" id="shopGrid"></div>
+</div>
+
+<!-- PAGE: STATES -->
+<div class="page" id="page-states">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-solid fa-map-location-dot" style="margin-right:6px;"></i>Six States · Six Traditions</div>
+    <div class="sec-title">INDIA'S <span>HERITAGE</span></div>
+    <p class="sec-desc">Journey through India's rich textile legacy, one state at a time</p>
+  </div>
+  <div class="states-container" id="statesContainer"></div>
+</div>
+
+<!-- PAGE: WISHLIST -->
+<div class="page" id="page-wishlist">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-regular fa-heart" style="margin-right:6px;"></i>Saved Favorites</div>
+    <div class="sec-title">YOUR <span>WISHLIST</span></div>
+    <p class="sec-desc">Your curated collection of treasured pieces</p>
+  </div>
+  <div class="wishlist-grid" id="wishlistGrid">
+    <div class="wishlist-empty">
+      <i class="fa-regular fa-heart"></i>
+      <h3>Your wishlist is empty</h3>
+      <p>Start exploring and save your favorite pieces</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: ADMIN / ADD PRODUCT -->
+<div class="page" id="page-admin">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-solid fa-plus-circle" style="margin-right:6px;"></i>Vendor Portal</div>
+    <div class="sec-title">ADD <span>PRODUCT</span></div>
+    <p class="sec-desc">Add new sarees and ethnic wear to your collection</p>
+  </div>
+  <div class="admin-form">
+    <form id="addProductForm" onsubmit="handleAddProduct(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-input" id="prodName" placeholder="e.g., Royal Kanjeevaram Silk" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">State</label>
+          <select class="form-select" id="prodState" required>
+            <option value="">Select State</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="West Bengal">West Bengal</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Kerala">Kerala</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="prodCat" required>
+            <option value="">Select Category</option>
+            <option value="saree">Saree</option>
+            <option value="lehenga">Lehenga</option>
+            <option value="anarkali">Anarkali</option>
+            <option value="salwar">Salwar Set</option>
+            <option value="ethnic">Ethnic Wear</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Price (₹)</label>
+          <input type="number" class="form-input" id="prodPrice" placeholder="e.g., 14999" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Original Price (₹)</label>
+          <input type="number" class="form-input" id="prodOldPrice" placeholder="e.g., 25000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Badge</label>
+          <select class="form-select" id="prodBadge">
+            <option value="">None</option>
+            <option value="NEW">New Arrival</option>
+            <option value="SALE">Sale</option>
+            <option value="BRIDAL">Bridal</option>
+            <option value="HOT">Trending</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label class="form-label">Image URL</label>
+          <input type="url" class="form-input" id="prodImage" placeholder="https://example.com/image.jpg" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="prodDesc" placeholder="Describe the product..." required></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label class="form-label">Fabric Details (comma separated)</label>
+          <input type="text" class="form-input" id="prodFabric" placeholder="Pure Silk, Gold Zari, Handwoven" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;"><i class="fa-solid fa-plus" style="margin-right:8px;"></i>ADD PRODUCT</button>
+    </form>
+  </div>
+</div>
+
+<!-- PAGE: PAYMENT -->
+<div class="page" id="page-payment">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-solid fa-credit-card" style="margin-right:6px;"></i>Secure Checkout</div>
+    <div class="sec-title">PAYMENT <span>DETAILS</span></div>
+  </div>
+  <div class="payment-container">
+    <div class="payment-form">
+      <div class="payment-methods">
+        <div class="pay-method active" onclick="selectPayMethod(this,'card')"><i class="fa-regular fa-credit-card"></i><span>Card</span></div>
+        <div class="pay-method" onclick="selectPayMethod(this,'upi')"><i class="fa-solid fa-mobile-screen"></i><span>UPI</span></div>
+        <div class="pay-method" onclick="selectPayMethod(this,'cod')"><i class="fa-solid fa-money-bill-wave"></i><span>COD</span></div>
+      </div>
+      <div id="cardForm">
+        <div class="form-row"><div class="form-group full"><label class="form-label">Card Number</label><input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19"></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Expiry Date</label><input type="text" class="form-input" placeholder="MM/YY" maxlength="5"></div><div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-input" placeholder="123" maxlength="3"></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-label">Name on Card</label><input type="text" class="form-input" placeholder="Full Name"></div></div>
+      </div>
+      <div id="upiForm" style="display:none;">
+        <div class="form-row"><div class="form-group full"><label class="form-label">UPI ID</label><input type="text" class="form-input" placeholder="name@upi"></div></div>
+      </div>
+      <div id="codForm" style="display:none;">
+        <p style="color:var(--on-surface-2);font-size:14px;line-height:1.7;"><i class="fa-solid fa-circle-info" style="color:var(--primary);margin-right:8px;"></i>Cash on Delivery is available for orders above ₹999. Additional ₹50 COD charges apply.</p>
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:12px;" onclick="processPayment()"><i class="fa-solid fa-lock" style="margin-right:8px;"></i>PAY SECURELY</button>
+    </div>
+    <div class="payment-summary">
+      <div class="pay-title">Order Summary</div>
+      <div id="paymentItems"></div>
+      <div class="pay-item total"><span>Total</span><span id="paymentTotal">₹0</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: TRACKING -->
+<div class="page" id="page-tracking">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-solid fa-truck-fast" style="margin-right:6px;"></i>Order Status</div>
+    <div class="sec-title">TRACK <span>ORDER</span></div>
+    <p class="sec-desc">Enter your order ID to track your heritage piece</p>
+  </div>
+  <div class="tracking-container">
+    <div class="track-box">
+      <i class="fa-solid fa-box-open" style="font-size:48px;color:var(--primary);margin-bottom:16px;"></i>
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:8px;">Track Your Order</h3>
+      <p style="color:var(--on-surface-2);font-size:14px;margin-bottom:20px;">Enter your order ID to see real-time updates</p>
+      <div class="track-input-wrap">
+        <input type="text" class="track-input" id="trackId" placeholder="e.g., VAS-2025-001234">
+        <button class="track-btn" onclick="trackOrder()"><i class="fa-solid fa-magnifying-glass"></i> TRACK</button>
+      </div>
+    </div>
+    <div class="track-status" id="trackStatus">
+      <div class="track-step completed"><div class="track-step-icon"><i class="fa-solid fa-check"></i></div><div class="track-step-info"><h4>Order Placed</h4><p>Your order has been confirmed on 19 May 2025</p></div></div>
+      <div class="track-step completed"><div class="track-step-icon"><i class="fa-solid fa-box"></i></div><div class="track-step-info"><h4>Packed & Ready</h4><p>Your items have been carefully packed by our artisans</p></div></div>
+      <div class="track-step active"><div class="track-step-icon"><i class="fa-solid fa-truck"></i></div><div class="track-step-info"><h4>Shipped</h4><p>Your package is on its way via Blue Dart Express</p></div></div>
+      <div class="track-step"><div class="track-step-icon"><i class="fa-solid fa-house"></i></div><div class="track-step-info"><h4>Out for Delivery</h4><p>Expected delivery by 22 May 2025</p></div></div>
+      <div class="track-step"><div class="track-step-icon"><i class="fa-solid fa-hand-holding-heart"></i></div><div class="track-step-info"><h4>Delivered</h4><p>Your heritage piece has reached you</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CONTACT -->
+<div class="page" id="page-contact">
+  <div class="sec-title-wrap">
+    <div class="sec-eyebrow"><i class="fa-solid fa-envelope" style="margin-right:6px;"></i>Get in Touch</div>
+    <div class="sec-title">CONTACT <span>US</span></div>
+    <p class="sec-desc">We'd love to hear from you. Reach out for inquiries, support, or collaborations.</p>
+  </div>
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-card"><i class="fa-solid fa-location-dot"></i><h4>Visit Our Store</h4><p>42, Heritage Lane, Jubilee Hills<br>Hyderabad, Telangana 500033<br>India</p></div>
+      <div class="contact-card"><i class="fa-solid fa-phone"></i><h4>Call Us</h4><p>+91 98765 43210<br>Mon - Sat, 10:00 AM - 8:00 PM IST</p></div>
+      <div class="contact-card"><i class="fa-solid fa-envelope"></i><h4>Email Us</h4><p>hello@vastrahub.in<br>support@vastrahub.in<br>wholesale@vastrahub.in</p></div>
+      <div class="contact-card"><i class="fa-brands fa-whatsapp"></i><h4>WhatsApp</h4><p>+91 98765 43210<br>Quick responses for orders & queries</p></div>
+    </div>
+    <div class="contact-form-side">
+      <h3>Send a Message</h3>
+      <form onsubmit="handleContact(event)" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="form-row" style="margin-bottom:0;"><div class="form-group"><input type="text" class="form-input" placeholder="Your Name" required></div><div class="form-group"><input type="email" class="form-input" placeholder="Your Email" required></div></div>
+        <div class="form-group"><input type="text" class="form-input" placeholder="Subject"></div>
+        <div class="form-group"><textarea class="form-textarea" placeholder="Your Message..." required></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;"><i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>SEND MESSAGE</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: OUR STORY -->
+<div class="page" id="page-story">
+  <div class="story-hero">
+    <img src="images/story-hero.jpg" alt="Our Story">
+    <div class="story-hero-content">
+      <h1>Our Story</h1>
+      <p>Preserving India's textile heritage, one thread at a time</p>
+    </div>
+  </div>
+  <div class="story-stats">
+    <div class="story-stat"><div class="story-stat-num">2014</div><div class="story-stat-label">Established</div></div>
+    <div class="story-stat"><div class="story-stat-num">28</div><div class="story-stat-label">States Covered</div></div>
+    <div class="story-stat"><div class="story-stat-num">12K+</div><div class="story-stat-label">Happy Customers</div></div>
+    <div class="story-stat"><div class="story-stat-num">500+</div><div class="story-stat-label">Artisan Partners</div></div>
+  </div>
+ <div class="story-section" style="padding-left:0!important;">
+  <div style="display:flex;align-items:center;gap:48px;margin-bottom:48px;margin-left:-48px;">
+    <div style="flex-shrink:0;width:280px;height:280px;border-radius:50%;overflow:hidden;border:4px solid var(--primary);box-shadow:0 8px 32px rgba(201,162,39,0.4);">
+      <img src="images/story1.jpg" alt="Our Story" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400'">
+    </div>
+    <div style="flex:1;">
+      <h2>The Beginning</h2>
+      <p>VastraHub was born from a simple yet powerful vision — to bring India's magnificent textile heritage to the world. Founded in 2014 in the heart of Hyderabad, we started as a small curation of Kanjeevaram silks and Banarasi brocades, working directly with master weavers who had spent decades perfecting their craft.</p>
+      <p>What began as a passion project has grown into a movement. Today, we partner with over 500 artisan families across 28 states, ensuring fair wages, preserving dying crafts, and creating a sustainable marketplace for authentic Indian textiles.</p>
+    </div>
+  </div>
+   
+    <div style="display:flex;align-items:center;gap:48px;margin-top:48px;">
+  <div style="flex:1;">
+    <h2>Empowering Artisans</h2>
+    <p>At the heart of VastraHub are the artisans — the master weavers, dyers, embroiderers, and craftsmen who pour their soul into every thread. We work directly with these artisans, cutting out middlemen to ensure they receive fair compensation for their work.</p>
+    <p>Beyond just commerce, we invest in artisan communities through skill development programs, healthcare initiatives, and educational scholarships for the next generation. By preserving these crafts, we are not only keeping traditions alive but also empowering families to thrive in a modern economy.</p>
+  </div>
+  <div style="flex-shrink:0;width:280px;height:280px;border-radius:50%;overflow:hidden;border:4px solid var(--primary);box-shadow:0 8px 32px rgba(201,162,39,0.4);">
+    <img src="images/story2.jpg" alt="Artisan" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400'">
+  </div>
+</div>
+</div>
+</div>
+  <!-- closes story-section -->
+
+<!-- PRODUCT VIEWER OVERLAY -->
+<div class="viewer-overlay" id="viewerOverlay" onclick="closeViewerIfBg(event)">
+  <div class="viewer-panel" id="viewerPanel">
+    <div class="vp-header">
+      <div class="vp-title" id="vpTitle">Product Details</div>
+      <button class="vp-close" onclick="closeViewer()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="vp-body">
+      <div class="vp-stage" id="vpStage">
+        <img class="vp-img" id="vpImg" src="" alt="" onclick="toggleZoom()">
+        <!-- 360° ROTATION FRAME STRIP -->
+        <div class="rotation-frame-strip" id="rotFrameStrip">
+          <span style="font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:1.5px;margin-right:4px;">360°</span>
+        </div>
+        <!-- COORDINATE HUD -->
+        <div class="rot-coord-hud" id="rotCoordHud">X: 0° · Y: 0° · Z: 1.0×</div>
+        <!-- FABRIC ZOOM LENS -->
+        <div class="fabric-zoom-lens" id="fabricZoomLens">
+          <img id="zoomLensImg" src="" alt="">
+          <div class="zoom-lens-ring"></div>
+        </div>
+        <div class="vp-fabric-tags" id="vpTags"></div>
+        <div class="view-angles">
+          <button class="angle-btn active" onclick="setAngle(0,this)" title="Normal"><i class="fa-solid fa-image"></i></button>
+          <button class="angle-btn" onclick="setAngle(1,this)" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="angle-btn" onclick="setAngle(2,this)" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+          <button class="angle-btn" onclick="setAngle(3,this)" title="Left Side"><i class="fa-solid fa-arrow-left"></i></button>
+          <button class="angle-btn" onclick="setAngle(4,this)" title="Right Side"><i class="fa-solid fa-arrow-right"></i></button>
+          <button class="angle-btn" onclick="setAngle(5,this)" title="Top View"><i class="fa-solid fa-arrow-up"></i></button>
+          <button class="angle-btn" onclick="setAngle(6,this)" title="Bottom View"><i class="fa-solid fa-arrow-down"></i></button>
+          <button class="angle-btn rot360" onclick="setAngle(7,this)" title="360 Rotate"><i class="fa-solid fa-rotate"></i></button>
+        </div>
+        <div class="vp-zoom-hint" id="zoomHint"><i class="fa-solid fa-hand-pointer" style="margin-right:6px;"></i>Hover for fabric zoom lens · Click for deep zoom</div>
+      </div>
+      <div class="vp-detail">
+        <div>
+          <div class="vp-pname" id="vpName"></div>
+          <div class="vp-brand"><i class="fa-solid fa-crown" style="margin-right:6px;"></i>VastraHub Heritage</div>
+          <div class="vp-stars-row"><div class="vp-stars" id="vpStars"></div><span class="vp-reviews">(128 verified reviews)</span></div>
+        </div>
+        <div class="vp-desc" id="vpDesc"></div>
+        <div><div class="vp-section-label">Available Colors</div><div class="vp-colors" id="vpColors"></div></div>
+        <div><div class="vp-section-label">Select Size</div><div class="vp-sizes" id="vpSizes"></div></div>
+        <div>
+          <div class="vp-price-row"><span class="vp-price" id="vpPrice"></span><span class="vp-old-price" id="vpOld"></span></div>
+          <div class="vp-tax"><i class="fa-solid fa-check" style="color:var(--primary);margin-right:4px;"></i>Inclusive of all taxes · Free shipping across India</div>
+        </div>
+        <div class="vp-btns">
+          <button class="btn-add" onclick="addToCartFromViewer()"><i class="fa-solid fa-bag-shopping" style="margin-right:8px;"></i>ADD TO BAG</button>
+          <button class="btn-wish-vp" id="vpWish" onclick="toggleWishViewer()"><i class="fa-regular fa-heart" style="margin-right:6px;"></i><span id="wishText">SAVE TO WISHLIST</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay-bg" id="cartBg" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <div class="cart-head-title"><i class="fa-solid fa-bag-shopping" style="margin-right:10px;"></i>Shopping Bag</div>
+    <button class="cart-head-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div style="text-align:center;padding:4rem 2rem;color:var(--on-surface-3);">
+      <i class="fa-solid fa-bag-shopping" style="font-size:3rem;margin-bottom:1rem;opacity:0.3;"></i>
+      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff;margin-bottom:0.5rem;">Your bag is empty</div>
+      <div style="font-size:0.85rem;">Add some beautiful heritage pieces!</div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-sub-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <div class="cart-sub-row"><span>Shipping</span><span style="color:var(--primary);">Free</span></div>
+    <div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-amount" id="cartTotal">₹0</span></div>
+    <button class="btn-checkout" onclick="showPage('payment')"><i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT</button>
+    <button class="btn-wish-vp" style="margin-top:10px;width:100%;text-align:center;" onclick="showPage('tracking')"><i class="fa-solid fa-truck-fast" style="margin-right:6px;"></i>TRACK EXISTING ORDER</button>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <div class="mob-tab active" onclick="showPage('hero')"><div class="mob-icon"><i class="fa-solid fa-house"></i></div><div class="mob-label">Home</div></div>
+  <div class="mob-tab" onclick="showPage('shop')"><div class="mob-icon"><i class="fa-solid fa-store"></i></div><div class="mob-label">Shop</div></div>
+  <div class="mob-tab" onclick="showPage('states')"><div class="mob-icon"><i class="fa-solid fa-map-location-dot"></i></div><div class="mob-label">States</div></div>
+  <div class="mob-tab" onclick="showPage('wishlist')"><div class="mob-icon"><i class="fa-regular fa-heart"></i></div><div class="mob-label">Wishlist</div></div>
+  <div class="mob-tab" onclick="openCart()"><div class="mob-icon"><i class="fa-solid fa-bag-shopping"></i></div><div class="mob-label">Bag</div></div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg"></span></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><i class="fa-solid fa-crown" style="margin-right:8px;color:var(--primary);"></i>Vastra<span>Hub</span></div>
+      <p class="footer-tagline">Celebrating India's magnificent textile heritage — 28 states, one platform, infinite elegance.</p>
+      <div class="footer-socials">
+        <div class="f-social"><i class="fa-brands fa-instagram"></i></div>
+        <div class="f-social"><i class="fa-brands fa-twitter"></i></div>
+        <div class="f-social"><i class="fa-brands fa-youtube"></i></div>
+        <div class="f-social"><i class="fa-brands fa-linkedin-in"></i></div>
+      </div>
+    </div>
+    <div><div class="footer-col-title">Shop</div><div class="footer-links"><a onclick="showPage('shop')">Sarees</a><a onclick="showPage('shop')">Lehengas</a><a onclick="showPage('shop')">Anarkalis</a><a onclick="showPage('shop')">Ethnic Wear</a><a onclick="showPage('shop')">New Arrivals</a></div></div>
+    <div><div class="footer-col-title">Help</div><div class="footer-links"><a onclick="showPage('tracking')">Track Order</a><a onclick="showPage('contact')">Size Guide</a><a onclick="showPage('contact')">Returns</a><a onclick="showPage('contact')">FAQs</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-links"><a>+91 98765 43210</a><a>hello@vastrahub.in</a><a onclick="showPage('contact')">Hyderabad Store</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© VastraHub 2025. All rights reserved.</div><div style="font-size:11px;color:var(--on-surface-3);"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--primary);"></i>Secure Payments | UPI | Cards | COD</div></div>
+</footer>
+
+<!-- MAP STATE DETAIL POPUP -->
+<div class="map-state-overlay" id="mapStateOverlay" onclick="closeMapStatePanel(event)">
+  <div class="map-state-panel" id="mapStatePanel">
+    <button class="msp-back" onclick="closeMapStatePanelBtn()"><i class="fa-solid fa-arrow-left"></i> ALL STATES</button>
+    <div class="msp-img-wrap">
+      <img id="mspImg" src="" alt="">
+      <div class="msp-img-badge">HERITAGE CRAFT</div>
+    </div>
+    <div class="msp-body">
+      <div class="msp-region" id="mspRegion"></div>
+      <div class="msp-state-name" id="mspStateName"></div>
+      <div class="msp-craft" id="mspCraft"></div>
+      <div class="msp-line"></div>
+      <div class="msp-desc" id="mspDesc"></div>
+      <div class="msp-feats" id="mspFeats"></div>
+      <div class="msp-price-row">
+        <span class="msp-price" id="mspPrice"></span>
+        <span class="msp-price-label">STARTING PRICE</span>
+      </div>
+      <button class="msp-shop-btn" onclick="closeMapStatePanelBtn();showPage('shop')">
+        <i class="fa-solid fa-bag-shopping"></i> SHOP COLLECTION
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+
+//===========================================//
+// Image URLs
+// Image URLs - Local Paths
+const IMG={
+  ap1: 'images/Andhra Pradesh/traditional handloom sarees 1.jpg',
+  ap2: 'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg',
+  ap3: 'images/Andhra Pradesh/Famous Sarees/uppada saree 1.jpg',
+  arunachal: 'images/Arunachal Pradesh/gale 2.jpg',
+  assam1: 'images/Assam/Assam Cotton Saree.jpg',
+  assam2: 'images/Assam/Mekhela Chador 1.jpg',
+  bihar1: 'images/Bihar/Tussar Silk Sarees 2.jpg',
+  bihar2: 'images/Bihar/Tussar Silk Sarees 1.jpg',
+  chhattisgarh: 'images/Chhattisgarh/Kachhora Style Saree.jpg',
+  goa1: 'images/Goa/Kashti Style Saree.jpg',
+  goa2: 'images/Goa/Traditional Goan Saree.jpg',
+  gujarat1: 'images/Gujarat/Bandhani Saree.jpg',
+  gujarat2: 'images/Gujarat/Patola Saree.jpg',
+  kerala1: 'images/Kerala/Kasavu Saree.jpg',
+  kerala2: 'images/Kerala/Settu Mundu.jpg'
+};
+
+// Hero Data
+const HERO_SLIDES=[
+  {ghost:'KALAMKARI',title:'SACRED<br>PRINTS',tag:'Andhra Pradesh Art',img:IMG.ap2,bg:'linear-gradient(135deg,#1a0a0a 0%,#2d1a3d 100%)',state:'Andhra Pradesh'},
+  {ghost:'ARUNACHAL',title:'TRIBAL<br>WEAVES',tag:'Northeast Heritage',img:IMG.arunachal,bg:'linear-gradient(135deg,#0a0a0a 0%,#1a0a2e 100%)',state:'Arunachal Pradesh'},
+  {ghost:'ASSAM',title:'SILK<br>TRADITIONS',tag:'Muga & Pat Silk',img:IMG.assam1,bg:'linear-gradient(135deg,#0a0a0a 0%,#0a1a0a 100%)',state:'Assam'},
+  {ghost:'TUSSAR',title:'GOLDEN<br>WAVES',tag:'Bihar Craftsmanship',img:IMG.bihar1,bg:'linear-gradient(135deg,#0a0a0a 0%,#3d0a1a 100%)',state:'Bihar'},
+  {ghost:'CHHATTISGARH',title:'HANDLOOM<br>HERITAGE',tag:'Central India Craft',img:IMG.chhattisgarh,bg:'linear-gradient(135deg,#0a0a0a 0%,#1a0a3d 100%)',state:'Chhattisgarh'},
+  {ghost:'GOA',title:'COASTAL<br>ELEGANCE',tag:'Western Weave',img:IMG.goa1,bg:'linear-gradient(135deg,#0a0a0a 0%,#0a1a1a 100%)',state:'Goa'},
+  {ghost:'BANDHANI',title:'TIE-DYE<br>MAGIC',tag:'Gujarat Festival',img:IMG.gujarat1,bg:'linear-gradient(135deg,#0a0a0a 0%,#1a3d0a 100%)',state:'Gujarat'},
+  {ghost:'KASAVU',title:'KERALA<br>GRACE',tag:'South Indian Classic',img:IMG.kerala1,bg:'linear-gradient(135deg,#0a0a0a 0%,#0a1a2d 100%)',state:'Kerala'}
+];
+
+let heroIdx=0,heroTimer;
+function buildHero(){const stage=document.getElementById('carouselStage'),dots=document.getElementById('heroDots');stage.innerHTML='';dots.innerHTML='';HERO_SLIDES.forEach((s,i)=>{const el=document.createElement('div');el.className='c-item';el.id=`ci-${i}`;el.onclick=()=>{heroGoTo(i);showPage('shop')};el.innerHTML=`<div class="item-badge"><i class="fa-solid fa-gem" style="margin-right:6px;"></i>${s.tag}</div><img src="${s.img}" alt="${s.ghost}" loading="lazy" onerror="this.src='https://picsum.photos/seed/${s.state}/400/600'">`;stage.appendChild(el);const dot=document.createElement('div');dot.className='h-dot';dot.onclick=()=>heroGoTo(i);dots.appendChild(dot)});updateHero()}
+function updateHero(){const n=HERO_SLIDES.length,slide=HERO_SLIDES[heroIdx];const heroEl=document.getElementById('hero');const isLight=document.documentElement.classList.contains('light-theme');const lightBgs=['linear-gradient(135deg,#f5e6e6 0%,#f5f5f5 100%)','linear-gradient(135deg,#e6e6f5 0%,#f5f5f5 100%)','linear-gradient(135deg,#e6f5e6 0%,#f5f5f5 100%)','linear-gradient(135deg,#f5f0e6 0%,#f5f5f5 100%)','linear-gradient(135deg,#e6e6f5 0%,#f5f5f5 100%)','linear-gradient(135deg,#e6f5f5 0%,#f5f5f5 100%)','linear-gradient(135deg,#f5f5e6 0%,#f5f5f5 100%)','linear-gradient(135deg,#e6f0f5 0%,#f5f5f5 100%)'];heroEl.style.background=isLight?lightBgs[heroIdx]:slide.bg;heroEl.style.transition='background 0.8s cubic-bezier(0.4,0,0.2,1)';document.getElementById('ghostText').textContent=slide.ghost;document.getElementById('heroTitle').innerHTML=slide.title;document.getElementById('seriesPill').innerHTML=`<i class="fa-solid fa-layer-group" style="margin-right:6px;"></i>Curated Series ${String(heroIdx+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;HERO_SLIDES.forEach((_,i)=>{const el=document.getElementById(`ci-${i}`);el.className='c-item';const diff=((i-heroIdx)%n+n)%n;if(diff===0)el.classList.add('pos-center');else if(diff===n-1)el.classList.add('pos-left');else if(diff===1)el.classList.add('pos-right');else el.classList.add('pos-back')});document.querySelectorAll('.h-dot').forEach((d,i)=>d.classList.toggle('on',i===heroIdx))}
+function heroGoTo(i){heroIdx=i;updateHero();resetHeroTimer()}
+function heroNext(){heroIdx=(heroIdx+1)%HERO_SLIDES.length;updateHero();resetHeroTimer()}
+function heroPrev(){heroIdx=(heroIdx-1+HERO_SLIDES.length)%HERO_SLIDES.length;updateHero();resetHeroTimer()}
+function resetHeroTimer(){clearInterval(heroTimer);heroTimer=setInterval(heroNext,5500)}
+document.getElementById('heroNext').onclick=heroNext;document.getElementById('heroPrev').onclick=heroPrev;
+
+// States Data
+const STATES_DATA=[
+  {num:'01',region:'South India',name:'KALAMKARI',sub:'HAND-PAINTED',location:'Andhra Pradesh - Tirupati',desc:'Kalamkari is the ancient art of hand-painted textiles from Andhra Pradesh. The word means "pen-work" - each design is meticulously drawn with natural brushes and vegetable dyes, taking weeks to complete.',feats:['Hand-painted with natural dyes & brushes','Sacred motifs: Krishna, temples, peacocks','GI Tag certified - Tirupati & Machilipatnam origin','Perfect for festive & traditional occasions'],price:'Rs 6,999',label:'Starting price - Authentic hand-painted',img:IMG.ap1,reverse:false},
+  {num:'02',region:'Northeast India',name:'TRIBAL WEAVES',sub:'ARUNACHAL',location:'Arunachal Pradesh',desc:'The tribal communities of Arunachal Pradesh create intricate handwoven textiles that reflect their rich cultural heritage. Each weave tells stories of indigenous traditions, sacred rituals, and connection to nature.',feats:['Handwoven by tribal artisans','Traditional motifs representing cultural stories','Organic natural fibers - cotton & silk','Ideal for ethnic & cultural fashion'],price:'Rs 4,499',label:'Starting price - Authentic tribal craft',img:IMG.arunachal,reverse:true},
+  {num:'03',region:'Northeast India',name:'ASSAM SILKS',sub:'MUGA & PAT',location:'Assam - Various regions',desc:'Assam is famous for three types of silk: Muga (golden silk), Pat (tussar), and Eri silk. These natural silks have been woven for centuries, producing incredibly durable yet luxurious fabrics.',feats:['Muga silk - golden & naturally lustrous','Pat silk - traditional tussar weave','Eri silk - vegan & sustainable option','GI Tag certified - authentic Assam silk'],price:'Rs 5,499',label:'Starting price - Premium natural silk',img:IMG.assam1,reverse:false},
+  {num:'04',region:'East India',name:'TUSSAR SILK',sub:'BIHAR HERITAGE',location:'Bihar - Bhagalpur & surrounding',desc:'Bihar\'s Tussar silk, also known as "wild silk," comes from the cocoons of Tussar silkworms found in sal forests. The resulting fabric is lustrous, durable, and has an elegant texture perfect for sarees.',feats:['100% pure Tussar silk from sal forest cocoons','Natural sheen & excellent durability','Lightweight drape perfect for Indian climate','GI Tag certified - authentic Bihar Tussar'],price:'Rs 7,999',label:'Starting price - Premium silk weave',img:IMG.bihar1,reverse:true},
+  {num:'05',region:'Central India',name:'CHHATTISGARH',sub:'HANDLOOM ART',location:'Chhattisgarh - Traditional regions',desc:'Chhattisgarh\'s handloom traditions are deeply rooted in tribal and folk culture. Weavers create beautiful textiles using traditional patterns that have been passed down through generations.',feats:['Traditional tribal & folk motifs','Handwoven on wooden looms','Natural fibers - cotton & cotton-silk blends','Perfect for festivals & ethnic wear'],price:'Rs 3,999',label:'Starting price - Authentic folk weave',img:IMG.chhattisgarh,reverse:false},
+  {num:'06',region:'West India',name:'GOA TEXTILES',sub:'COASTAL HERITAGE',location:'Goa - Various artisan communities',desc:'Goa\'s textile heritage blends Portuguese colonial influence with traditional Indian weaving. The result is unique designs featuring coastal motifs, vibrant colors, and exceptional craftsmanship.',feats:['Coastal motif designs & vibrant colors','Portuguese-influenced traditional patterns','Handwoven cotton & cotton-silk blend','Ideal for summer & festive occasions'],price:'Rs 4,799',label:'Starting price - Unique coastal weave',img:IMG.goa1,reverse:true},
+  {num:'07',region:'West India',name:'BANDHANI',sub:'GUJARATI TIE-DYE',location:'Gujarat - Jaipur, Jodhpur, Kutch',desc:'Bandhani is the art of tying and dyeing fabric to create intricate patterns. Gujarat\'s Bandhani tradition is world-famous, with thousands of tiny knots creating breathtaking tie-dye designs.',feats:['Bandhani - thousands of hand-tied knots','Vibrant natural & synthetic dyes','Perfect for Navratri, Diwali & weddings','Available in cotton, silk & blended fabrics'],price:'Rs 3,499',label:'Starting price - Festival collection',img:IMG.gujarat1,reverse:false},
+  {num:'08',region:'South India',name:'KASAVU SAREE',sub:'KERALA ELEGANCE',location:'Kerala - Kochi & surrounding',desc:'The Kasavu saree is Kerala\'s iconic white silk saree with gold zari borders. This elegant drape represents Kerala\'s cultural sophistication and is essential attire for Kerala weddings and festivals.',feats:['Pure Kasavu silk - white & natural white shades','Traditional gold zari border (Pallu)','Official attire for Kerala festivals','Lightweight & comfortable drape'],price:'Rs 8,999',label:'Starting price - Authentic Kerala weave',img:IMG.kerala1,reverse:true}
+];
+
+function buildStates(){const container=document.getElementById('statesContainer');container.innerHTML=STATES_DATA.map(s=>`<div class="state-block ${s.reverse?'reverse':''}"><div class="sb-img-side reveal"><img class="sb-img" src="${s.img}" alt="${s.name}" onerror="this.src='https://picsum.photos/seed/${s.location.split('-')[0].trim()}/600/800'"><div class="sb-img-ov"></div><span class="sb-num">${s.num}</span><span class="sb-tag"><i class="fa-solid fa-certificate" style="margin-right:6px;"></i>Heritage Craft</span></div><div class="sb-text-side"><div class="sb-inner reveal"><span class="sb-num-label">${s.num} - ${s.region}</span><div class="sb-state-name">${s.name}<br><span>${s.sub}</span></div><div class="sb-region"><i class="fa-solid fa-location-dot" style="margin-right:6px;"></i>${s.location}</div><div class="sb-line"></div><p class="sb-desc">${s.desc}</p><div class="sb-feats">${s.feats.map(f=>`<div class="sb-feat"><span class="sb-dot"></span>${f}</div>`).join('')}</div><div class="sb-price-row"><span class="sb-price">${s.price}</span><span class="sb-price-label">- ${s.label}</span></div><button class="sb-cta" onclick="showPage('shop')">Shop Collection <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i></button></div></div></div>`).join('')}
+
+// Products
+let PRODUCTS=[
+  {id:'P01',state:'Andhra Pradesh',cat:'saree',badge:'BRIDAL',name:'Royal Kalamkari Print Saree',img:IMG.ap2,desc:'Hand-painted Kalamkari saree with sacred Krishna motifs. Vegetable dyed using traditional techniques, each saree is unique and takes weeks to create.',price:'₹6,999',old:'₹10,000',priceNum:6999,stars:5,colors:['#7a1a4a','#c9a227','#2a4a6e','#2a7a3a'],sizes:['Free Size'],fabric:['Hand-Painted','Natural Dyes','Authentic Kalamkari']},
+  {id:'P02',state:'Arunachal Pradesh',cat:'saree',badge:'NEW',name:'Tribal Heritage Woven Saree',img:IMG.arunachal,desc:'Authentic tribal weave from Arunachal Pradesh indigenous communities. Each pattern represents cultural stories passed through generations.',price:'₹4,499',old:'₹7,000',priceNum:4499,stars:5,colors:['#3a3a5a','#e8b04a','#8a4a6a','#4a6a8a'],sizes:['Free Size'],fabric:['Handwoven','Tribal Craft','Organic Fibers']},
+  {id:'P03',state:'Assam',cat:'saree',badge:'HOT',name:'Golden Muga Silk Saree',img:IMG.assam1,desc:'Premium Muga silk from Assam with natural golden sheen. The golden color comes naturally from the Tussar silkworm, no dyeing required.',price:'₹7,999',old:'₹12,000',priceNum:7999,stars:5,colors:['#d4af37','#1a1a1a','#2a4a6a','#4a2a2a'],sizes:['Free Size'],fabric:['100% Muga Silk','Natural Golden Sheen','GI Certified']},
+  {id:'P04',state:'Bihar',cat:'saree',badge:'SALE',name:'Premium Tussar Silk Saree',img:IMG.bihar1,desc:'Authentic Bihar Tussar from sal forest cocoons. Lightweight, durable, and with a beautiful natural texture perfect for Indian climate.',price:'₹7,499',old:'₹11,000',priceNum:7499,stars:4,colors:['#c9a227','#3a3a5a','#8a6a4a','#1a4a6a'],sizes:['Free Size'],fabric:['Tussar Silk','Forest Harvest','Lightweight']},
+  {id:'P05',state:'Chhattisgarh',cat:'salwar',badge:'NEW',name:'Folk Motif Cotton Saree',img:IMG.chhattisgarh,desc:'Traditional Chhattisgarh handloom with tribal folk patterns. Woven on wooden looms by artisans preserving centuries-old techniques.',price:'₹3,999',old:'₹6,000',priceNum:3999,stars:5,colors:['#e83a3a','#c9a227','#2a7a3a','#1a4a6e'],sizes:['Free Size'],fabric:['100% Cotton','Handloom','Folk Weave']},
+  {id:'P06',state:'Goa',cat:'anarkali',badge:'NEW',name:'Coastal Motif Weave Saree',img:IMG.goa1,desc:'Goa\'s unique blend of coastal and Portuguese-influenced designs. Vibrant colors and distinctive patterns reflect Goa\'s rich cultural fusion.',price:'₹4,799',old:'₹7,500',priceNum:4799,stars:5,colors:['#8b3a1a','#e8b04a','#2a7a3a','#1a4a6a'],sizes:['Free Size'],fabric:['Cotton Silk','Coastal Motifs','Handwoven']},
+  {id:'P07',state:'Gujarat',cat:'saree',badge:'FESTIVAL',name:'Traditional Bandhani Tie-Dye Saree',img:IMG.gujarat1,desc:'Authentic Gujarati Bandhani with thousands of hand-tied knots. Perfect for Navratri, Diwali, and festive celebrations with vibrant colors.',price:'₹3,499',old:'₹5,500',priceNum:3499,stars:5,colors:['#e83a3a','#ff8c00','#c9a227','#2a7a3a'],sizes:['Free Size'],fabric:['Cotton Silk','Hand-Tied Knots','Festival Wear']},
+  {id:'P08',state:'Kerala',cat:'lehenga',badge:'BRIDAL',name:'Authentic Kasavu Saree with Gold Border',img:IMG.kerala1,desc:'Traditional Kerala Kasavu saree with authentic gold zari border (Pallu). The iconic white saree essential for Kerala weddings and festivals.',price:'₹8,999',old:'₹14,000',priceNum:8999,stars:5,colors:['#f5f0e8','#c9a227','#d4af37','#1a1a1a'],sizes:['Free Size'],fabric:['Kasavu Silk','Gold Zari Border','Kerala Classic']},
+  {id:'P09',state:'Andhra Pradesh',cat:'ethnic',badge:'SALE',name:'Pochampally Inspired Print Saree',img:IMG.ap1,desc:'Andhra Pradesh handloom featuring traditional patterns inspired by Pochampally ikat designs. Comfortable cotton blend for everyday wear.',price:'₹5,499',old:'₹8,500',priceNum:5499,stars:4,colors:['#2a4a8a','#e83a3a','#c9a227','#1a6a3a'],sizes:['Free Size'],fabric:['Cotton Blend','Handloom','Ikat Inspired']},
+  {id:'P10',state:'Assam',cat:'saree',badge:'PREMIUM',name:'Pat Silk Heritage Saree',img:IMG.assam2,desc:'Traditional Assam Pat silk from the historic weaving region. Known for its durability and elegant drape, perfect for traditional occasions.',price:'₹6,499',old:'₹10,000',priceNum:6499,stars:5,colors:['#1a1a1a','#c9a227','#8a4a6a','#4a2a2a'],sizes:['Free Size'],fabric:['Pat Silk','Traditional Weave','Heritage Quality']}
+];
+
+let shopFilter='all',wishSet=new Set(),cartMap={};
+let currentProduct=null,currentZoom=1,currentAngle=0;
+
+function renderShop(filter=shopFilter,query=''){let list=PRODUCTS;if(filter!=='all')list=list.filter(p=>p.cat===filter);if(query)list=list.filter(p=>p.name.toLowerCase().includes(query)||p.state.toLowerCase().includes(query)||p.fabric.join(' ').toLowerCase().includes(query));const g=document.getElementById('shopGrid');if(!list.length){g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:5rem 2rem;color:var(--on-surface-3);"><i class="fa-solid fa-store-slash" style="font-size:3rem;margin-bottom:1rem;opacity:0.3;"></i><div style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:0.5rem;">No products found</div><p>Try different search terms or categories</p></div>`;return}g.innerHTML=list.map(p=>`<div class="product-card" onclick="openViewer('${p.id}')"><div class="card-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://picsum.photos/seed/${p.id}/400/500'">${p.badge?`<div class="card-badge">${p.badge}</div>`:''}<div class="card-quick" onclick="event.stopPropagation();openViewer('${p.id}')"><i class="fa-regular fa-eye"></i></div></div><div class="card-body"><div class="card-state-tag"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>${p.state}</div><div class="card-stars">${'★'.repeat(p.stars)}${'☆'.repeat(5-p.stars)}</div><div class="card-name">${p.name}</div><div class="card-type">${p.fabric[0]} · ${p.fabric[1]}</div><div class="card-footer"><div><span class="card-price">${p.price}</span>${p.old?`<span class="card-old">${p.old}</span>`:''}</div><button class="card-wish ${wishSet.has(p.id)?'active':''}" onclick="event.stopPropagation();toggleWishById('${p.id}',this)"><i class="${wishSet.has(p.id)?'fa-solid':'fa-regular'} fa-heart"></i></button></div></div></div>`).join('')}
+
+function filterShop(cat,el){shopFilter=cat;document.querySelectorAll('#shopTabs .cat-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderShop()}
+function filterShopSearch(){const q=document.getElementById('shopSearch').value.toLowerCase();renderShop(shopFilter,q)}
+let shopStateFilter='all';
+function filterShopState(state,el){
+    shopStateFilter=state;
+    document.querySelectorAll('#shopTabs .cat-tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    renderShopByState();
+}
+
+function renderShopByState(){
+    let list=PRODUCTS;
+    if(shopStateFilter!=='all') list=list.filter(p=>p.state===shopStateFilter);
+    const q=document.getElementById('shopSearch').value.toLowerCase();
+    if(q) list=list.filter(p=>p.name.toLowerCase().includes(q)||p.state.toLowerCase().includes(q));
+    const g=document.getElementById('shopGrid');
+    if(!list.length){
+        g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:5rem 2rem;color:var(--on-surface-3);"><i class="fa-solid fa-store-slash" style="font-size:3rem;margin-bottom:1rem;opacity:0.3;"></i><div style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--on-surface);margin-bottom:0.5rem;">No products found</div><p>Try different state or search terms</p></div>`;
+        return;
+    }
+    g.innerHTML=list.map(p=>`<div class="product-card" onclick="openViewer('${p.id}')"><div class="card-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://picsum.photos/seed/${p.id}/400/500'">${p.badge?`<div class="card-badge">${p.badge}</div>`:''}<div class="card-quick" onclick="event.stopPropagation();openViewer('${p.id}')"><i class="fa-regular fa-eye"></i></div></div><div class="card-body"><div class="card-state-tag"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>${p.state}</div><div class="card-stars">${'★'.repeat(p.stars)}${'☆'.repeat(5-p.stars)}</div><div class="card-name">${p.name}</div><div class="card-type">${p.fabric[0]} · ${p.fabric[1]}</div><div class="card-footer"><div><span class="card-price">${p.price}</span>${p.old?`<span class="card-old">${p.old}</span>`:''}</div><button class="card-wish ${wishSet.has(p.id)?'active':''}" onclick="event.stopPropagation();toggleWishById('${p.id}',this)"><i class="${wishSet.has(p.id)?'fa-solid':'fa-regular'} fa-heart"></i></button></div></div></div>`).join('');
+}
+
+function renderWishlist(){const items=PRODUCTS.filter(p=>wishSet.has(p.id));const g=document.getElementById('wishlistGrid');if(!items.length){g.innerHTML=`<div class="wishlist-empty" style="grid-column:1/-1;"><i class="fa-regular fa-heart"></i><h3>Your wishlist is empty</h3><p>Start exploring and save your favorite heritage pieces</p><button class="sb-cta" style="margin-top:20px;" onclick="showPage('shop')">EXPLORE SHOP <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i></button></div>`;return}g.innerHTML=items.map(p=>`<div class="product-card"><div class="card-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy" onclick="openViewer('${p.id}')" style="cursor:pointer;" onerror="this.src='https://picsum.photos/seed/${p.id}/400/500'"><div class="card-quick" onclick="openViewer('${p.id}')"><i class="fa-regular fa-eye"></i></div></div><div class="card-body"><div class="card-state-tag"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>${p.state}</div><div class="card-name">${p.name}</div><div class="card-type">${p.fabric[0]} · ${p.fabric[1]}</div><div class="card-footer"><span class="card-price">${p.price}</span><button class="card-wish active" onclick="toggleWishById('${p.id}',this);renderWishlist();"><i class="fa-solid fa-heart"></i></button></div><button class="btn-add" style="margin-top:12px;width:100%;padding:10px;font-size:11px;" onclick="addToCart(PRODUCTS.find(p=>p.id=='${p.id}'));showToast('Added to bag!')"><i class="fa-solid fa-bag-shopping" style="margin-right:6px;"></i>ADD TO BAG</button></div></div>`).join('')}
+
+// VIEWER WITH ZOOM & ANGLES
+function openViewer(id){currentProduct=PRODUCTS.find(p=>p.id===id);if(!currentProduct)return;const p=currentProduct;document.getElementById('vpTitle').textContent=p.name;document.getElementById('vpName').textContent=p.name;document.getElementById('vpDesc').textContent=p.desc;document.getElementById('vpPrice').textContent=p.price;document.getElementById('vpOld').textContent=p.old||'';const vpImg=document.getElementById('vpImg');vpImg.src=p.img;vpImg.classList.remove('zoomed');vpImg.style.filter='';currentZoom=1;currentAngle=0;vpImg.style.transform='scale(1)';document.getElementById('rotCoordHud').textContent='X: 0° · Y: 0° · Z: 1.0×';buildRotationFrames(p.img);document.getElementById('zoomLensImg').src=p.img;document.getElementById('vpTags').innerHTML=p.fabric.map(f=>`<div class="vp-tag"><i class="fa-solid fa-check" style="margin-right:4px;"></i>${f}</div>`).join('');document.getElementById('vpColors').innerHTML=p.colors.map((c,i)=>`<div class="vp-swatch ${i===0?'active':''}" style="background:${c}" onclick="this.parentElement.querySelectorAll('.vp-swatch').forEach(s=>s.classList.remove('active'));this.classList.add('active')"></div>`).join('');document.getElementById('vpSizes').innerHTML=p.sizes.map((s,i)=>`<div class="vp-size ${i===0?'active':''}" onclick="this.parentElement.querySelectorAll('.vp-size').forEach(x=>x.classList.remove('active'));this.classList.add('active')">${s}</div>`).join('');document.getElementById('vpStars').textContent='★'.repeat(p.stars)+'☆'.repeat(5-p.stars);const wBtn=document.getElementById('vpWish');const isWished=wishSet.has(id);wBtn.className='btn-wish-vp'+(isWished?' wished':'');document.getElementById('wishText').textContent=isWished?'SAVED TO WISHLIST':'SAVE TO WISHLIST';wBtn.querySelector('i').className=isWished?'fa-solid fa-heart':'fa-regular fa-heart';document.querySelectorAll('.angle-btn').forEach((b,i)=>b.classList.toggle('active',i===0));document.getElementById('viewerOverlay').classList.add('open');document.body.classList.add('no-scroll')}
+
+function closeViewer(){document.getElementById('viewerOverlay').classList.remove('open');document.body.classList.remove('no-scroll');const img=document.getElementById('vpImg');img.classList.remove('zoomed');img.style.transform='scale(1)';img.style.filter='';currentZoom=1;currentAngle=0;const lens=document.getElementById('fabricZoomLens');if(lens)lens.classList.remove('active');}
+function closeViewerIfBg(e){if(e.target===document.getElementById('viewerOverlay'))closeViewer()}
+
+function toggleZoom(){const img=document.getElementById('vpImg');if(img.classList.contains('zoomed')){img.classList.remove('zoomed');img.style.transform=`scale(1) rotate(${currentAngle}deg)`;currentZoom=1}else{img.classList.add('zoomed');img.style.transform=`scale(2.5) rotate(${currentAngle}deg)`;currentZoom=2.5}}
+
+function setAngle(idx,btn){document.querySelectorAll('.angle-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const img=document.getElementById('vpImg');const transforms=[`scale(${currentZoom}) rotate(0deg)`,`scale(${currentZoom*1.5}) rotate(0deg)`,`scale(${currentZoom*0.7}) rotate(0deg)`,`scale(${currentZoom}) rotate(-15deg)`,`scale(${currentZoom}) rotate(15deg)`,`scale(${currentZoom}) rotate(0deg) translateY(-20px)`,`scale(${currentZoom}) rotate(0deg) translateY(20px)`,`scale(${currentZoom}) rotate(0deg)`];const angles=[0,0,0,-15,15,0,0,0];currentAngle=angles[idx];img.style.transform=transforms[idx];if(idx===7){img.style.transition='transform 2s ease';img.style.transform=`scale(${currentZoom}) rotate(360deg)`;setTimeout(()=>{img.style.transition='transform 0.5s ease';img.style.transform=`scale(${currentZoom}) rotate(0deg)`;currentAngle=0},2000)}}
+
+function addToCartFromViewer(){if(!currentProduct)return;addToCart(currentProduct);closeViewer()}
+
+function toggleWishViewer(){if(!currentProduct)return;const id=currentProduct.id;const wBtn=document.getElementById('vpWish');const wText=document.getElementById('wishText');const wIcon=wBtn.querySelector('i');if(wishSet.has(id)){wishSet.delete(id);wText.textContent='SAVE TO WISHLIST';wBtn.classList.remove('wished');wIcon.className='fa-regular fa-heart';showToast('Removed from wishlist')}else{wishSet.add(id);wText.textContent='SAVED TO WISHLIST';wBtn.classList.add('wished');wIcon.className='fa-solid fa-heart';showToast('❤ Saved to wishlist')}renderShop();if(document.getElementById('page-wishlist').classList.contains('active'))renderWishlist()}
+
+function toggleWishById(id,btn){if(wishSet.has(id)){wishSet.delete(id);showToast('Removed from wishlist')}else{wishSet.add(id);showToast('❤ Added to wishlist')}renderShop();if(document.getElementById('page-wishlist').classList.contains('active'))renderWishlist()}
+
+// CART
+function addToCart(p){if(cartMap[p.id])cartMap[p.id].qty++;else cartMap[p.id]={...p,qty:1};renderCart();showToast('✓ Added to bag!')}
+function removeFromCart(id){delete cartMap[id];renderCart()}
+function changeQty(id,delta){if(!cartMap[id])return;cartMap[id].qty+=delta;if(cartMap[id].qty<=0)delete cartMap[id];renderCart()}
+function renderCart(){const items=Object.values(cartMap);const badge=document.getElementById('cartBadge');badge.textContent=items.reduce((s,i)=>s+i.qty,0);const total=items.reduce((s,i)=>s+i.priceNum*i.qty,0);document.getElementById('cartSubtotal').textContent=`₹${total.toLocaleString('en-IN')}`;document.getElementById('cartTotal').textContent=`₹${total.toLocaleString('en-IN')}`;const payItems=document.getElementById('paymentItems');if(payItems){payItems.innerHTML=items.map(i=>`<div class="pay-item"><span>${i.name} x${i.qty}</span><span>${i.price}</span></div>`).join('');document.getElementById('paymentTotal').textContent=`₹${total.toLocaleString('en-IN')}`}const el=document.getElementById('cartItems');if(!items.length){el.innerHTML=`<div style="text-align:center;padding:4rem 2rem;color:var(--on-surface-3);"><i class="fa-solid fa-bag-shopping" style="font-size:3rem;margin-bottom:1rem;opacity:0.3;"></i><div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff;margin-bottom:0.5rem;">Your bag is empty</div><div style="font-size:0.85rem;">Add some beautiful heritage pieces!</div></div>`;return}el.innerHTML=items.map(i=>`<div class="cart-item"><img class="ci-img" src="${i.img}" alt="${i.name}" onerror="this.src='https://picsum.photos/seed/${i.id}/100/120'"><div class="ci-info"><div class="ci-name">${i.name}</div><div class="ci-sub"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>${i.state} · ${i.fabric[0]}</div><div class="ci-bottom"><div class="ci-price">${i.price}</div><div class="ci-qty"><button class="qty-b" onclick="changeQty('${i.id}',-1)"><i class="fa-solid fa-minus"></i></button><div class="qty-n">${i.qty}</div><button class="qty-b" onclick="changeQty('${i.id}',1)"><i class="fa-solid fa-plus"></i></button></div></div></div><button class="ci-remove" onclick="removeFromCart('${i.id}')"><i class="fa-solid fa-trash"></i></button></div>`).join('')}
+function openCart(){document.getElementById('cartSidebar').classList.add('open');document.getElementById('cartBg').classList.add('open');document.body.classList.add('no-scroll')}
+function closeCart(){document.getElementById('cartSidebar').classList.remove('open');document.getElementById('cartBg').classList.remove('open');document.body.classList.remove('no-scroll')}
+
+// ADMIN
+function handleAddProduct(e){e.preventDefault();const name=document.getElementById('prodName').value;const state=document.getElementById('prodState').value;const cat=document.getElementById('prodCat').value;const price=parseInt(document.getElementById('prodPrice').value);const oldPrice=document.getElementById('prodOldPrice').value;const badge=document.getElementById('prodBadge').value;const img=document.getElementById('prodImage').value;const desc=document.getElementById('prodDesc').value;const fabric=document.getElementById('prodFabric').value.split(',').map(s=>s.trim());const newId='P'+String(PRODUCTS.length+1).padStart(2,'0');PRODUCTS.push({id:newId,state:state,cat:cat,badge:badge,name:name,img:img,desc:desc,price:'₹'+price.toLocaleString('en-IN'),old:oldPrice?'₹'+parseInt(oldPrice).toLocaleString('en-IN'):'',priceNum:price,stars:5,colors:['#c9a227','#1a1a1a','#4a0e2e'],sizes:['Free Size'],fabric:fabric.length>=2?fabric:[fabric[0]||'Handwoven','Heritage']});showToast('✓ Product added successfully!');document.getElementById('addProductForm').reset();renderShop()}
+
+// PAYMENT
+function selectPayMethod(el,method){document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('active'));el.classList.add('active');document.getElementById('cardForm').style.display=method==='card'?'block':'none';document.getElementById('upiForm').style.display=method==='upi'?'block':'none';document.getElementById('codForm').style.display=method==='cod'?'block':'none'}
+function processPayment(){showToast('🎉 Payment successful! Order confirmed.');cartMap={};renderCart();setTimeout(()=>{showPage('tracking')},2000)}
+
+// TRACKING
+function trackOrder(){const id=document.getElementById('trackId').value;if(!id){showToast('Please enter an order ID');return}document.getElementById('trackStatus').classList.add('show');showToast('Tracking order: '+id)}
+
+// CONTACT
+function handleContact(e){e.preventDefault();showToast("✓ Message sent! We'll get back to you soon.");e.target.reset()}
+
+// PAGE NAVIGATION
+function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const targetPage=document.getElementById('page-'+name);if(targetPage)targetPage.classList.add('active');document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));const navMap={hero:0,shop:1,states:2,story:3,contact:4};const links=document.querySelectorAll('.nav-links a');if(navMap[name]!==undefined&&links[navMap[name]])links[navMap[name]].classList.add('active');document.querySelectorAll('.mob-tab').forEach((t,i)=>{const mobMap={hero:0,shop:1,states:2,wishlist:3};t.classList.toggle('active',i===(mobMap[name]||0))});window.scrollTo({top:0,behavior:'smooth'});document.body.classList.remove('no-scroll');if(name==='shop')renderShopByState();if(name==='wishlist')renderWishlist();if(name==='payment')renderCart()}
+
+// NAV SCROLL
+window.addEventListener('scroll',()=>{document.getElementById('topNav').classList.toggle('solid',window.scrollY>60)});
+
+// SCROLL REVEAL
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:0.1});
+
+// TOAST
+function showToast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+
+// THEME TOGGLE
+function toggleTheme(){const html=document.documentElement;const isDark=html.classList.contains('light-theme');const themeBtn=document.getElementById('themeToggle');const icon=themeBtn.querySelector('i');if(isDark){html.classList.remove('light-theme');localStorage.setItem('vastrahub-theme','dark');icon.className='fa-solid fa-moon'}else{html.classList.add('light-theme');localStorage.setItem('vastrahub-theme','light');icon.className='fa-solid fa-sun'}updateHero()}
+
+function initTheme(){const saved=localStorage.getItem('vastrahub-theme')||'dark';const html=document.documentElement;const themeBtn=document.getElementById('themeToggle');if(saved==='light'){html.classList.add('light-theme');themeBtn.querySelector('i').className='fa-solid fa-sun'}else{html.classList.remove('light-theme');themeBtn.querySelector('i').className='fa-solid fa-moon'}}
+
+// MH STATES DATA
+const MH_STATES_DATA=[
+  {id:'ap',name:'Andhra Pradesh',craft:'Kalamkari Hand-Painted Art',img:IMG.ap2},
+  {id:'arunachal',name:'Arunachal Pradesh',craft:'Tribal Handwoven Textiles',img:IMG.arunachal},
+  {id:'assam',name:'Assam',craft:'Muga & Pat Silk Traditions',img:IMG.assam1},
+  {id:'bihar',name:'Bihar',craft:'Tussar Silk Heritage',img:IMG.bihar1},
+  {id:'chhattisgarh',name:'Chhattisgarh',craft:'Tribal Handloom Weaves',img:IMG.chhattisgarh},
+  {id:'goa',name:'Goa',craft:'Coastal Textile Heritage',img:IMG.goa1},
+  {id:'gujarat',name:'Gujarat',craft:'Bandhani Tie-Dye Craft',img:IMG.gujarat1},
+  {id:'kerala',name:'Kerala',craft:'Kasavu Silk Excellence',img:IMG.kerala1}
+];
+function buildMHStates(){const container=document.getElementById('mhStatesGridContainer');if(!container)return;container.innerHTML='';MH_STATES_DATA.forEach(st=>{const card=document.createElement('div');card.className='mh-state-card';card.onclick=()=>showPage('states');card.innerHTML=`<div class="mh-state-card-img"><img src="${st.img}" alt="${st.name}"><div class="mh-state-card-overlay"><div class="card-shop-hint" style="display:flex;align-items:center;gap:8px;margin-bottom:6px;opacity:0;transform:translateY(10px);transition:all 0.4s 0.1s"><span style="width:20px;height:1px;background:var(--primary);display:inline-block"></span><span style="font-size:9px;letter-spacing:2px;color:var(--primary);font-weight:700">EXPLORE</span></div><h3 class="mh-state-card-title">${st.name}</h3><p class="mh-state-card-craft">${st.craft}</p></div></div>`;container.appendChild(card)})}
+
+// SLIDE-IN-RIGHT OBSERVER
+function initSlideInRight(){const els=document.querySelectorAll('.slide-in-right');const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('animated');obs.unobserve(e.target)}})},{threshold:0.2});els.forEach(el=>obs.observe(el))}
+
+function initRevealLines(){
+  const wraps=document.querySelectorAll('.reveal-line-wrap');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const line=e.target.querySelector('.reveal-line');
+        if(line){line.style.animation='none';line.offsetHeight;line.style.animation='revealLine 1.2s ease forwards';}
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3});
+  wraps.forEach(w=>obs.observe(w));
+}
+
+// ===== FEATURE 1: ENHANCED 360° ROTATION + FABRIC ZOOM LENS =====
+let rotFrames=[];
+function buildRotationFrames(imgSrc){
+  const strip=document.getElementById('rotFrameStrip');
+  strip.innerHTML='<span style="font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:1.5px;margin-right:4px;">360°</span>';
+  // Simulate 8 rotation frames with CSS transforms on thumbnails
+  const angles=[0,45,90,135,180,225,270,315];
+  const labels=['Front','45°','Side','135°','Back','225°','Side','315°'];
+  angles.forEach((ang,i)=>{
+    const dot=document.createElement('div');
+    dot.className='rot-frame-dot'+(i===0?' active':'');
+    dot.title=labels[i];
+    const thumb=document.createElement('img');
+    thumb.src=imgSrc;
+    thumb.style.filter=`hue-rotate(${ang*0.2}deg) brightness(${0.7+Math.cos((ang*Math.PI/180))*0.3})`;
+    thumb.style.transform=`scaleX(${Math.cos(ang*Math.PI/180)>0?1:-1}) scale(${0.5+Math.abs(Math.cos(ang*Math.PI/180))*0.5})`;
+    dot.appendChild(thumb);
+    dot.onclick=()=>{
+      document.querySelectorAll('.rot-frame-dot').forEach(d=>d.classList.remove('active'));
+      dot.classList.add('active');
+      applyRotationFrame(ang,i,imgSrc);
+    };
+    strip.appendChild(dot);
+  });
+}
+
+function applyRotationFrame(angleDeg,frameIdx,imgSrc){
+  const img=document.getElementById('vpImg');
+  const hud=document.getElementById('rotCoordHud');
+  const scaleX=Math.cos(angleDeg*Math.PI/180);
+  const brightness=0.7+Math.abs(scaleX)*0.3;
+  img.style.transition='transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.4s';
+  img.style.transform=`scaleX(${scaleX>0?1:-1}) scale(${currentZoom}) rotate(0deg)`;
+  img.style.filter=`brightness(${brightness}) contrast(${1+Math.abs(scaleX)*0.08})`;
+  currentAngle=angleDeg;
+  hud.textContent=`X: ${angleDeg}° · Y: 0° · Z: ${currentZoom.toFixed(1)}×`;
+}
+
+// FABRIC ZOOM LENS - Deep hover sweep
+function initFabricZoomLens(){
+  const stage=document.getElementById('vpStage');
+  const lens=document.getElementById('fabricZoomLens');
+  const lensImg=document.getElementById('zoomLensImg');
+  if(!stage||!lens)return;
+
+  let lensActive=false;
+  const MAGNIFICATION=4.5;
+  const LENS_SIZE=130;
+
+  stage.addEventListener('mouseenter',()=>{
+    if(document.getElementById('vpImg').classList.contains('zoomed'))return;
+    lensActive=true;
+    lens.classList.add('active');
+    lensImg.src=document.getElementById('vpImg').src;
+  });
+  stage.addEventListener('mouseleave',()=>{lensActive=false;lens.classList.remove('active')});
+
+  stage.addEventListener('mousemove',e=>{
+    if(!lensActive||document.getElementById('vpImg').classList.contains('zoomed'))return;
+    const rect=stage.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+
+    // Position lens centered on cursor
+    lens.style.left=(x-LENS_SIZE/2)+'px';
+    lens.style.top=(y-LENS_SIZE/2)+'px';
+
+    // Calculate magnified image position
+    const imgEl=document.getElementById('vpImg');
+    const imgRect=imgEl.getBoundingClientRect();
+    const relX=e.clientX-imgRect.left;
+    const relY=e.clientY-imgRect.top;
+    const pctX=(relX/imgRect.width)*100;
+    const pctY=(relY/imgRect.height)*100;
+
+    // Move the large zoomed image inside lens
+    const lensImgW=LENS_SIZE*MAGNIFICATION;
+    const lensImgH=(imgRect.height/imgRect.width)*lensImgW;
+    lensImg.style.width=lensImgW+'px';
+    lensImg.style.height=lensImgH+'px';
+    lensImg.style.left=(-pctX/100*lensImgW+LENS_SIZE/2)+'px';
+    lensImg.style.top=(-pctY/100*lensImgH+LENS_SIZE/2)+'px';
+
+    // Update HUD with focal coordinates
+    const hud=document.getElementById('rotCoordHud');
+    hud.textContent=`X: ${Math.round(pctX)}% · Y: ${Math.round(pctY)}% · ${MAGNIFICATION}× Lens`;
+  });
+}
+
+// ===== STATE CARDS GRID + RIGHT PANEL =====
+
+// ===== MAP STATE DETAIL DATA =====
+const MAP_STATE_INFO={
+  'Andhra Pradesh':{region:'South India',craft:'Kalamkari Art',price:'From ₹6,999',img:'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg',desc:'Kalamkari is the ancient art of hand-painting sacred stories on fabric using natural dyes and a bamboo pen (kalam).',feats:['Hand-painted pen-work','Natural vegetable dyes','Sacred motifs & stories','GI Certified craft']},
+  'Arunachal Pradesh':{region:'Northeast India',craft:'Tribal Handwoven',price:'From ₹4,499',img:'images/Arunachal Pradesh/gale 2.jpg',desc:'Indigenous tribes of Arunachal Pradesh create stunning handwoven textiles with vibrant geometric patterns and sacred cultural motifs.',feats:['Tribal geometric patterns','Organic natural fibers','Cultural story motifs','Indigenous artisan craft']},
+  'Assam':{region:'Northeast India',craft:'Muga & Pat Silk',price:'From ₹5,499',img:'images/Assam/Assam Cotton Saree.jpg',desc:'Assam produces golden Muga silk — one of the world\'s rarest natural silks — prized for its natural golden sheen and durability.',feats:['Golden Muga silk','Natural golden color','GI Certified Assam silk','Pat & Eri variety']},
+  'Bihar':{region:'East India',craft:'Tussar Silk Heritage',price:'From ₹7,499',img:'images/Bihar/Tussar Silk Sarees 2.jpg',desc:'Bihar\'s Tussar silk from Bhagalpur, also known as wild silk, is harvested from sal forest cocoons creating naturally textured fabric.',feats:['Wild Tussar silk','Sal forest harvest','GI Certified Bhagalpur','Natural texture & sheen']},
+  'Chhattisgarh':{region:'Central India',craft:'Tribal Handloom',price:'From ₹3,999',img:'images/Chhattisgarh/Kachhora Style Saree.jpg',desc:'Chhattisgarh tribal weavers create bold handloom textiles with folk motifs reflecting their deep connection with nature and culture.',feats:['Tribal folk motifs','Wooden loom handwoven','Natural fiber base','Festival ethnic wear']},
+  'Goa':{region:'West India',craft:'Coastal Heritage Weave',price:'From ₹4,799',img:'images/Goa/Kashti Style Saree.jpg',desc:'Goa\'s Kunbi saree is a vibrant red-and-white cotton weave rooted in the Kunbi tribal community\'s ancient coastal textile tradition.',feats:['Red & white cotton weave','Kunbi tribal tradition','Coastal motif patterns','Summer & festival wear']},
+  'Gujarat':{region:'West India',craft:'Patola & Bandhani',price:'From ₹3,499',img:'images/Gujarat/Bandhani Saree.jpg',desc:'Gujarat produces the world-famous double ikat Patola silk and vibrant Bandhani tie-dye, both GI certified heritage crafts.',feats:['Double ikat technique','GI Certified Patola','Bandhani tie-dye','Navratri festival wear']},
+  'Haryana':{region:'North India',craft:'Phulkari Craft',price:'From ₹1,999',img:'images/Andhra Pradesh/traditional handloom sarees 1.jpg',desc:'Haryana\'s Phulkari embroidery features vibrant floral patterns stitched with silk threads on cotton fabric — a cherished folk art.',feats:['Vibrant floral motifs','Hand-stitched silk thread','Cotton base fabric','Festival & wedding wear']},
+  'Himachal Pradesh':{region:'North India',craft:'Kullu Shawl',price:'From ₹3,499',img:'images/Andhra Pradesh/traditional handloom sarees 1.jpg',desc:'Kullu shawls are distinctive handwoven woolen textiles with geometric border patterns, crafted on traditional pit looms.',feats:['Pure wool handwoven','Geometric border patterns','Mountain artisan craft','Winter heritage textile']},
+  'Jammu & Kashmir':{region:'North India',craft:'Pashmina Shawl',price:'From ₹12,999',img:'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg',desc:'Pashmina shawls from Kashmir are among the finest textiles in the world, woven from the soft undercoat of the Changthangi goat.',feats:['Pure Pashmina wool','Hand-embroidered patterns','GI Certified authentic','Winter luxury textile']},
+  'Jharkhand':{region:'East India',craft:'Tribal Weave',price:'From ₹2,499',img:'images/Assam/Assam Cotton Saree.jpg',desc:'Jharkhand\'s tribal communities weave unique textiles with bold patterns that reflect their cultural identity and connection to nature.',feats:['Tribal handloom','Bold folk patterns','Natural fibers','Cultural heritage craft']},
+  'Karnataka':{region:'South India',craft:'Ilkal & Mysore Silk',price:'From ₹4,999',img:'images/Kerala/Kasavu Saree.jpg',desc:'Karnataka\'s Ilkal sarees feature distinctive checked borders and temple motifs, while Mysore silk is renowned for its pure lustre.',feats:['Ilkal border technique','Mysore pure silk','Temple motif designs','South India classic']},
+  'Kerala':{region:'South India',craft:'Kasavu Gold Zari',price:'From ₹8,999',img:'images/Kerala/Kasavu Saree.jpg',desc:'Kerala\'s ivory Kasavu sarees with gold zari borders are sacred attire — worn at temples, festivals, and weddings alike.',feats:['Pure Kasavu silk','Gold zari border','Temple & festival wear','Mundum Neriyathum style']},
+  'Madhya Pradesh':{region:'Central India',craft:'Chanderi & Maheshwari',price:'From ₹3,999',img:'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg',desc:'Chanderi silk and Maheshwari cotton-silk sarees from MP are known for their lightweight transparency and elegant floral motifs.',feats:['Sheer Chanderi silk','Maheshwari cotton-silk','Traditional floral motifs','Lightweight drape']},
+  'Maharashtra':{region:'West India',craft:'Paithani Zari Silk',price:'From ₹6,499',img:'images/Goa/Kashti Style Saree.jpg',desc:'Paithani sarees from Paithan are Maharashtra\'s royal heirloom textile, woven with peacock and flower motifs in pure silk and zari.',feats:['Pure silk with zari','Peacock & lotus motifs','Royal heirloom tradition','Bridal & festival wear']},
+  'Manipur':{region:'Northeast India',craft:'Meitei Textile',price:'From ₹2,999',img:'images/Assam/Assam Cotton Saree.jpg',desc:'Manipuri textiles are known for their delicate weave and vibrant colors, reflecting the rich cultural traditions of the region.',feats:['Handwoven cotton & silk','Vibrant traditional colors','Cultural motifs','Northeast heritage']},
+  'Meghalaya':{region:'Northeast India',craft:'Eri Silk Weave',price:'From ₹3,499',img:'images/Assam/Assam Cotton Saree.jpg',desc:'Meghalaya\'s Eri silk is a sustainable vegan silk woven by indigenous women, known for its warmth and natural earthy tones.',feats:['Vegan Eri silk','Sustainable production','Earthy natural tones','Tribal women weavers']},
+  'Mizoram':{region:'Northeast India',craft:'Puan Textile',price:'From ₹2,499',img:'images/Assam/Assam Cotton Saree.jpg',desc:'Mizo women weave the Puan, a traditional wraparound garment with bold geometric patterns that signify cultural identity.',feats:['Bold geometric patterns','Handwoven cotton','Cultural identity cloth','Women artisan craft']},
+  'Nagaland':{region:'Northeast India',craft:'Tribal Shawl',price:'From ₹3,499',img:'images/Arunachal Pradesh/gale 2.jpg',desc:'Naga shawls are powerful symbols of identity and status, each tribe having its own unique pattern and color combination.',feats:['Tribe-specific patterns','Handwoven cotton','Status & identity symbols','Bold color combinations']},
+  'Odisha':{region:'East India',craft:'Sambalpuri Ikat',price:'From ₹4,999',img:'images/Assam/Assam Cotton Saree.jpg',desc:'Sambalpuri handloom with unique bandha (ikat) technique creates stunning geometric patterns before weaving even begins.',feats:['Bandha ikat resist-dye','Geometric tribal motifs','GI Certified craft','Cotton & silk blend']},
+  'Punjab':{region:'North India',craft:'Phulkari Embroidery',price:'From ₹2,999',img:'images/Andhra Pradesh/traditional handloom sarees 1.jpg',desc:'Phulkari meaning "flower work" is a vibrant folk embroidery tradition of Punjab, featuring bold patterns on cotton or silk.',feats:['Hand embroidered flowers','Vibrant thread work','Cotton & silk base','Cultural festival wear']},
+  'Rajasthan':{region:'West India',craft:'Bandhani & Leheriya',price:'From ₹2,999',img:'images/Gujarat/Bandhani Saree.jpg',desc:'Rajasthan\'s Bandhani tie-dye and Leheriya wave-pattern dyeing are iconic folk textile arts passed down through generations.',feats:['Hand-tied resist dyeing','Wave & dot patterns','Festival & bridal wear','Vivid natural colors']},
+  'Sikkim':{region:'Northeast India',craft:'Thangka Textile',price:'From ₹3,999',img:'images/Arunachal Pradesh/gale 2.jpg',desc:'Sikkim\'s textile tradition reflects Tibetan Buddhist influences, with richly embroidered fabrics featuring sacred motifs.',feats:['Buddhist sacred motifs','Rich embroidery','Himalayan tradition','Silk & wool blend']},
+  'Tamil Nadu':{region:'South India',craft:'Kanjeevaram Silk',price:'From ₹8,999',img:'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg',desc:'Kanjeevaram silk from Kanchipuram is the queen of Indian silks — woven with pure mulberry silk threads and real gold zari.',feats:['Pure mulberry silk','Real gold zari','Bridal collection queen','GI Certified Kanchipuram']},
+  'Telangana':{region:'South India',craft:'Pochampally Ikat',price:'From ₹4,499',img:'images/Assam/Mekhela Chador 1.jpg',desc:'Pochampally ikat from Telangana creates mesmerising geometric patterns by resist-dyeing the threads before weaving.',feats:['Ikat resist dyeing','Geometric diamond motifs','GI Certified craft','Cotton & silk blend']},
+  'Tripura':{region:'Northeast India',craft:'Rignai Textile',price:'From ₹2,499',img:'images/Arunachal Pradesh/gale 2.jpg',desc:'Tripuri women weave the Rignai, a traditional wrap skirt with intricate geometric patterns in vibrant colors.',feats:['Traditional wrap skirt','Geometric patterns','Vibrant natural colors','Women artisan heritage']},
+  'Uttar Pradesh':{region:'North India',craft:'Banarasi Silk Brocade',price:'From ₹5,999',img:'images/Bihar/Tussar Silk Sarees 2.jpg',desc:'Banarasi silk brocades from Varanasi are the epitome of Indian luxury textiles, woven with real gold and silver zari threads.',feats:['Pure silk with gold zari','Mughal floral motifs','GI Certified Varanasi','Bridal collection staple']},
+  'Uttarakhand':{region:'North India',craft:'Garhwali Handwoven',price:'From ₹2,499',img:'images/Andhra Pradesh/traditional handloom sarees 1.jpg',desc:'Uttarakhand\'s mountain weavers create warm woolen textiles with traditional Garhwali and Kumaoni patterns.',feats:['Handwoven wool','Mountain artisan craft','Traditional folk patterns','Winter heritage textile']},
+  'West Bengal':{region:'East India',craft:'Tant & Muslin Weave',price:'From ₹3,499',img:'images/Assam/Mekhela Chador 1.jpg',desc:'Bengal\'s Tant cotton sarees and legendary Dhaka Muslin are woven with extraordinary fineness, draping like flowing water.',feats:['Ultra-fine cotton weave','Lightweight & breathable','Heritage Tant tradition','Summer festival saree']},
+  'Delhi':{region:'North India',craft:'Zardozi Embroidery',price:'From ₹4,499',img:'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg',desc:'Delhi\'s Zardozi craft features intricate gold and silver threadwork on rich fabrics, a royal Mughal-era embroidery tradition.',feats:['Gold & silver threadwork','Mughal era heritage','Royal embroidery craft','Bridal & festive wear']},
+  'Puducherry':{region:'South India',craft:'French-Indian Textile',price:'From ₹2,499',img:'images/Andhra Pradesh/traditional handloom sarees 1.jpg',desc:'Puducherry\'s textile tradition blends French colonial aesthetics with South Indian weaving, creating distinctive fusion fabrics.',feats:['French-Indian fusion','Handwoven cotton','Coastal design motifs','Unique heritage blend']},
+  'Lakshadweep':{region:'Island Territory',craft:'Coastal Textile',price:'From ₹1,999',img:'images/Goa/Kashti Style Saree.jpg',desc:'Lakshadweep\'s island artisans create vibrant textiles inspired by their coastal heritage and ocean surroundings.',feats:['Island craft tradition','Coastal-inspired motifs','Vibrant natural colors','Summer lightweight fabric']},
+  'Andaman Islands':{region:'Island Territory',craft:'Island Craft',price:'From ₹1,499',img:'images/Goa/Kashti Style Saree.jpg',desc:'The Andaman Islands\' unique craft tradition blends indigenous tribal artistry with coastal influences.',feats:['Indigenous tribal craft','Coastal motif patterns','Natural fiber textiles','Island heritage art']}
+};
+
+function openMapStatePanel(stateName){
+  const data=MAP_STATE_INFO[stateName];
+  if(!data)return;
+  document.getElementById('mspImg').src=data.img;
+  document.getElementById('mspImg').onerror=function(){this.src='https://picsum.photos/seed/'+stateName+'/400/300'};
+  document.getElementById('mspRegion').textContent=data.region;
+  document.getElementById('mspStateName').textContent=stateName;
+  document.getElementById('mspCraft').textContent=data.craft;
+  document.getElementById('mspDesc').textContent=data.desc;
+  document.getElementById('mspPrice').textContent=data.price;
+  document.getElementById('mspFeats').innerHTML=data.feats.map(f=>`<div class="msp-feat"><span class="msp-feat-dot"></span>${f}</div>`).join('');
+  document.getElementById('mapStateOverlay').classList.add('open');
+  document.body.classList.add('no-scroll');
+}
+
+function closeMapStatePanel(e){
+  if(e&&e.target!==document.getElementById('mapStateOverlay'))return;
+  document.getElementById('mapStateOverlay').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}
+function closeMapStatePanelBtn(){
+  document.getElementById('mapStateOverlay').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}
+
+function initIndiaMap(){
+  const svg=document.getElementById('indiaSvgMap');
+  const tooltip=document.getElementById('mapTooltip');
+  if(!svg||!tooltip)return;
+
+  svg.querySelectorAll('.india-state-path').forEach(path=>{
+    path.addEventListener('mouseenter',e=>{
+      const st=path.dataset.state;
+      const craft=path.dataset.craft;
+      const price=path.dataset.price;
+      document.getElementById('tooltipState').textContent=st;
+      document.getElementById('tooltipCraft').textContent=craft;
+      document.getElementById('tooltipPrice').textContent=price;
+
+      const svgRect=svg.getBoundingClientRect();
+      const pathBBox=path.getBBox();
+      const scaleX=svgRect.width/600;
+      const scaleY=svgRect.height/680;
+      let tx=pathBBox.x*scaleX+pathBBox.width*scaleX/2;
+      let ty=pathBBox.y*scaleY;
+      tx=Math.min(tx,svgRect.width-180);
+      tx=Math.max(tx,10);
+      tooltip.style.left=tx+'px';
+      tooltip.style.top=(ty-10)+'px';
+      tooltip.classList.add('show');
+    });
+    path.addEventListener('mouseleave',()=>tooltip.classList.remove('show'));
+    path.addEventListener('click',()=>{
+      tooltip.classList.remove('show');
+      openMapStatePanel(path.dataset.state);
+    });
+  });
+
+  // 3D tilt on mouse move over map wrap
+  const wrap=document.getElementById('indiaMapInner');
+  document.querySelector('.india-map-wrap').addEventListener('mousemove',e=>{
+    const rect=e.currentTarget.getBoundingClientRect();
+    const cx=rect.width/2,cy=rect.height/2;
+    const dx=((e.clientX-rect.left)-cx)/cx;
+    const dy=((e.clientY-rect.top)-cy)/cy;
+    wrap.style.transform=`rotateX(${-dy*10+mapRotX}deg) rotateY(${dx*8+mapRotY}deg)`;
+  });
+  document.querySelector('.india-map-wrap').addEventListener('mouseleave',()=>{
+    wrap.style.transform=`rotateX(${mapRotX}deg) rotateY(${mapRotY}deg)`;
+  });
+}
+
+// ===== STATE CARDS GRID =====
+const STATE_CARDS_LIST = [
+  {name:'Andhra Pradesh', craft:'Kalamkari Art', img:'images/Andhra Pradesh/Famous Sarees/kalamkari print saree.jpg', flower:'🌸', featured:true},
+  {name:'Arunachal Pradesh', craft:'Tribal Handwoven', img:'images/Arunachal Pradesh/gale 2.jpg', flower:'🌿', featured:false},
+  {name:'Assam', craft:'Muga & Pat Silk', img:'images/Assam/Eri Silk Saree 1.jpg', flower:'🌺', featured:true},
+  {name:'Bihar', craft:'Tussar Silk', img:'images/Bihar/Tussar Silk Sarees 2.jpg', flower:'✿', featured:true},
+  {name:'Chhattisgarh', craft:'Tribal Handloom', img:'images/Chhattisgarh/Kachhora Style Saree.jpg', flower:'🌼', featured:false},
+  {name:'Goa', craft:'Coastal Weave', img:'images/Goa/Kashti Style Saree.jpg', flower:'🌴', featured:false},
+  {name:'Gujarat', craft:'Patola & Bandhani', img:'images/Gujarat/Bandhani Saree.jpg', flower:'🌼', featured:true},
+  {name:'Kerala', craft:'Kasavu Gold Zari', img:'images/Kerala/Kasavu Saree.jpg', flower:'🌿', featured:true},
+  {name:'Rajasthan', craft:'Bandhani & Leheriya', img:'images/Gujarat/Bandhani Saree.jpg', flower:'✦', featured:true},
+  {name:'Tamil Nadu', craft:'Kanjeevaram Silk', img:'images/Andhra Pradesh/Famous Sarees/pochampally style saree 1.jpg', flower:'🌸', featured:true},
+  {name:'West Bengal', craft:'Tant & Muslin', img:'images/Assam/Mekhela Chador 1.jpg', flower:'✿', featured:true},
+  {name:'Uttar Pradesh', craft:'Banarasi Silk', img:'images/Bihar/Tussar Silk Sarees 2.jpg', flower:'🌟', featured:true},
+  {name:'Odisha', craft:'Sambalpuri Ikat', img:'images/Assam/Assam Cotton Saree.jpg', flower:'🌺', featured:true},
+  {name:'Maharashtra', craft:'Paithani Zari Silk', img:'images/Goa/Kashti Style Saree.jpg', flower:'✦', featured:false},
+  {name:'Karnataka', craft:'Ilkal & Mysore Silk', img:'images/Kerala/Settu Mundu.jpg', flower:'🌸', featured:false},
+];
+
+function buildStateCardsGrid(){
+  const grid = document.getElementById('stateCardsGrid');
+  if(!grid) return;
+  grid.innerHTML = STATE_CARDS_LIST.map(s => `
+    <div class="sc-card" onclick="loadStatePanel('${s.name}',this)">
+      <img src="${s.img}" alt="${s.name}" loading="lazy" onerror="this.src='https://picsum.photos/seed/${s.name.replace(/ /g,'')}/300/400'">
+      <div class="sc-card-ov"></div>
+      <div class="sc-card-top">${s.flower}</div>
+      ${s.featured ? '<div class="sc-card-featured">★ Featured</div>' : ''}
+      <div class="sc-card-info">
+        <div class="sc-card-state">${s.name}</div>
+        <div class="sc-card-craft">${s.craft}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function loadStatePanel(stateName, cardEl){
+  // Update active card
+  document.querySelectorAll('.sc-card').forEach(c => c.classList.remove('active'));
+  if(cardEl) cardEl.classList.add('active');
+
+  const data = MAP_STATE_INFO[stateName];
+  if(!data) return;
+
+  document.getElementById('srpImg').src = data.img;
+  document.getElementById('srpImg').onerror = function(){ this.src='https://picsum.photos/seed/'+stateName+'/400/300'; };
+  document.getElementById('srpRegion').textContent = data.region;
+  document.getElementById('srpStateName').textContent = stateName;
+  document.getElementById('srpCraft').textContent = data.craft;
+  document.getElementById('srpDesc').textContent = data.desc;
+  document.getElementById('srpPrice').textContent = data.price;
+  document.getElementById('srpFeats').innerHTML = data.feats.map(f => '<div class="srp-feat">'+f+'</div>').join('');
+
+  document.getElementById('srpDefault').style.display = 'none';
+  document.getElementById('srpDetail').style.display = 'flex';
+}
+
+function closeSrpDetail(){
+  document.getElementById('srpDefault').style.display = 'flex';
+  document.getElementById('srpDetail').style.display = 'none';
+  document.querySelectorAll('.sc-card').forEach(c => c.classList.remove('active'));
+}
+
+// ===== FEATURE 3: REELS SCROLL NAV =====
+function scrollReels(dir){
+  const track=document.getElementById('reelsTrack');
+  track.scrollBy({left:dir*220,behavior:'smooth'});
+}
+
+// ===== PROFILE MENU FUNCTIONS =====
+function toggleProfileMenu(){
+  const menu = document.getElementById('profileMenu');
+  menu.classList.toggle('show');
+  if(menu.classList.contains('show')){
+    document.addEventListener('click', closeProfileMenuOnClick);
+  }else{
+    document.removeEventListener('click', closeProfileMenuOnClick);
+  }
+}
+
+function closeProfileMenuOnClick(e){
+  if(!e.target.closest('.profile-wrapper')){
+    document.getElementById('profileMenu').classList.remove('show');
+    document.removeEventListener('click', closeProfileMenuOnClick);
+  }
+}
+
+function showProfilePage(page){
+  console.log('Profile page: ' + page);
+  switch(page){
+    case 'account':
+      alert('📋 My Account - Coming Soon!');
+      break;
+    case 'orders':
+      alert('📦 My Orders');
+      break;
+    case 'addresses':
+      alert('📍 Addresses');
+      break;
+    case 'wishlist':
+      showPage('wishlist');
+      break;
+    case 'settings':
+      alert('⚙️ Settings');
+      break;
+  }
+  document.getElementById('profileMenu').classList.remove('show');
+}
+
+function logout(){
+  if(confirm('Are you sure you want to logout?')){
+    localStorage.removeItem('vastraHub_loggedIn');
+    localStorage.removeItem('vastraHub_currentUser');
+    document.getElementById('profileMenu').classList.remove('show');
+    window.location.href = 'loginpage.html';
+  }
+}
+
+function uploadProfileImage(event){
+  const file = event.target.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const imageData = e.target.result;
+      // Store in localStorage
+      localStorage.setItem('profileImage', imageData);
+      // Update UI
+      document.getElementById('profileImage').src = imageData;
+      document.getElementById('profileImage').style.display = 'block';
+      document.getElementById('profileInitial').style.display = 'none';
+      document.getElementById('avatarImage').src = imageData;
+      document.getElementById('avatarImage').style.display = 'block';
+      document.getElementById('avatarInitial').style.display = 'none';
+      console.log('✅ Profile image uploaded!');
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// Load profile image on page load
+function loadProfileImage(){
+  // Load user info from localStorage (set by loginpage.html)
+  const currentUser = JSON.parse(localStorage.getItem('vastraHub_currentUser') || 'null');
+  if(currentUser){
+    const name = currentUser.name || 'User';
+    const email = currentUser.email || '';
+    const initial = name.charAt(0).toUpperCase();
+    document.getElementById('profileUserName').textContent = name;
+    document.getElementById('profileUserEmail').textContent = email;
+    document.getElementById('profileInitial').textContent = initial;
+    document.getElementById('avatarInitial').textContent = initial;
+  }
+
+  // Load profile photo if saved
+  const savedImage = localStorage.getItem('profileImage');
+  if(savedImage){
+    document.getElementById('profileImage').src = savedImage;
+    document.getElementById('profileImage').style.display = 'block';
+    document.getElementById('profileInitial').style.display = 'none';
+    document.getElementById('avatarImage').src = savedImage;
+    document.getElementById('avatarImage').style.display = 'block';
+    document.getElementById('avatarInitial').style.display = 'none';
+  }
+}
+
+// ===== FEATURED STATES NAVIGATION =====
+function goToState(stateName){
+  showPage('states');
+  if(typeof loadStatePanel === 'function'){
+    loadStatePanel(stateName);
+  }
+}
+
+//=============================
+// COUNT ANIMATION
+function animateCount(el, target, duration=2000){
+  const isK = target.toString().includes('K');
+  const isPlus = target.toString().includes('+');
+  const num = parseInt(target.toString().replace(/[K+]/g,''));
+  let start=0;
+  const step = num/((duration/16));
+  const timer = setInterval(()=>{
+    start += step;
+    if(start >= num){
+      start = num;
+      clearInterval(timer);
+    }
+    let display = Math.floor(start).toString();
+    if(isK) display += 'K';
+    if(isPlus) display += '+';
+    el.textContent = display;
+  }, 16);
+}
+
+function initCountAnimation(){
+  const stats = document.querySelectorAll('.story-stat-num');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const original = el.textContent.trim();
+        animateCount(el, original);
+        obs.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  stats.forEach(el=>obs.observe(el));
+}
+//=========================
+
+// INIT
+window.addEventListener('DOMContentLoaded',()=>{loadProfileImage();initTheme();buildHero();initCountAnimation();buildStates();heroTimer=setInterval(heroNext,5500);buildMHStates();initSlideInRight();initRevealLines();initFabricZoomLens();renderShop();setTimeout(()=>{document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el))},100)});
+</script>
+</body>
+</html>
